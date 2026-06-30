@@ -2,10 +2,11 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import starlight from '@astrojs/starlight';
 
-// TODO: set this to the real production domain before deploy — it drives
-// canonical URLs and the sitemap.
+// Hosted on GitHub Pages at the org root site (repo: plume-newsletter.github.io).
+// `site` drives canonical URLs + the sitemap; when a custom domain is added,
+// change it here and drop a public/CNAME file (no base path needed either way).
 export default defineConfig({
-  site: 'https://plume.dev',
+  site: 'https://plume-newsletter.github.io',
   integrations: [
     starlight({
       title: 'Plume docs',
