@@ -1,0 +1,25 @@
+/* Brand theme for Starlight — match the landing page (Inter + JetBrains Mono,
+   blue/oklch accent). Self-hosted fonts via fontsource. */
+@import '@fontsource-variable/inter';
+@import '@fontsource-variable/jetbrains-mono';
+
+:root {
+  --sl-font: 'Inter Variable', system-ui, -apple-system, sans-serif;
+  --sl-font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
+}
+
+/* light */
+:root[data-theme='light'] {
+  --sl-color-accent-low: oklch(0.93 0.04 264);
+  --sl-color-accent: oklch(0.474 0.181 265.638);
+  --sl-color-accent-high: oklch(0.34 0.14 265);
+  --sl-color-text-accent: oklch(0.470 0.181 265.638);
+}
+
+/* dark */
+:root[data-theme='dark'] {
+  --sl-color-accent-low: oklch(0.30 0.062 262);
+  --sl-color-accent: oklch(0.623 0.188 259.815);
+  --sl-color-accent-high: oklch(0.86 0.06 262);
+  --sl-color-text-accent: oklch(0.720 0.150 262);
+}
