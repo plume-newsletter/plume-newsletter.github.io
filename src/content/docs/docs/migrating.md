@@ -25,6 +25,6 @@ Use the in-app CSV importer (see [Subscribers & opt-in](/docs/subscribers/)) or,
 Already opted-in contacts can skip Plume's double opt-in — toggle *existing consent* during import so you don't re-confirm a warm list.
 :::
 
-## Connecting SES
+## Connecting an email provider
 
-Plume sends through your own Amazon SES account, configured **in the app UI** under **Settings** — not through environment variables. The only environment configuration Plume reads is the eight `PLUME_*` variables (there is no `.env.example`). See [Configuration](/docs/configuration/) and [Connecting Amazon SES](/docs/connecting-ses/) before your first send.
+Plume sends through your own email provider — Amazon SES or any SMTP provider — configured **in the app UI** under **Settings**, not through environment variables. The only environment configuration Plume reads is the eight `PLUME_*` variables (there is no `.env.example`). See [Configuration](/docs/configuration/), [Connecting Amazon SES](/docs/connecting-ses/), and [Email providers](/docs/email-providers/) before your first send.

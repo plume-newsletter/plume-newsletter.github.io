@@ -29,10 +29,10 @@ Plume is configured entirely through environment variables. There is no `.env.ex
 
 ## Secrets are entered in the UI
 
-Provider credentials are **not** environment variables. Your Amazon SES credentials (region, access key id, secret) and your Anthropic API key for the [AI assistant](/docs/additional-features/) are entered in the app under **Settings**. Plume encrypts them at rest with AES using `PLUME_SECRET_KEY`, so they are never stored in plaintext and never live in your shell history or compose file.
+Provider credentials are **not** environment variables. Your email provider credentials — Amazon SES (region, access key id, secret) or SMTP (host, port, username, password) — and your Anthropic API key for the [AI assistant](/docs/additional-features/) are entered in the app under **Settings**. Plume encrypts them at rest with AES using `PLUME_SECRET_KEY`, so they are never stored in plaintext and never live in your shell history or compose file.
 
-This means there are no `SES_*`, `AWS_*`, or Anthropic-key environment variables — connect those providers from the running app instead. See [Connecting Amazon SES](/docs/connecting-ses/).
+This means there are no `SES_*`, `SMTP_*`, `AWS_*`, or Anthropic-key environment variables — connect those providers from the running app instead. See [Connecting Amazon SES](/docs/connecting-ses/) or [Email providers](/docs/email-providers/) for SMTP.
 
 :::note
-Because `PLUME_SECRET_KEY` decrypts every stored secret, keep it stable and backed up. Rotating or losing it makes previously encrypted SES and Anthropic credentials unreadable, and you'll need to re-enter them.
+Because `PLUME_SECRET_KEY` decrypts every stored secret, keep it stable and backed up. Rotating or losing it makes previously encrypted provider and Anthropic credentials unreadable, and you'll need to re-enter them.
 :::

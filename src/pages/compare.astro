@@ -10,7 +10,7 @@ const rows = [
   { label: 'Automations', plume: '✓', mc: '✓', ck: '✓' },
   { label: 'A/B testing', plume: '✓', mc: 'Paid tiers', ck: 'Paid tiers' },
   { label: 'Hooks / extensibility', plume: 'First-class', mc: 'API only', ck: 'API only' },
-  { label: 'Sends through your SES', plume: '✓', mc: '—', ck: '—' },
+  { label: 'Email providers', plume: 'SES, Mailgun, SendGrid, Postmark, Resend, any SMTP', mc: 'Built-in sender only', ck: 'Built-in sender only' },
   { label: 'Vendor lock-in', plume: 'None', mc: 'High', ck: 'High' },
 ];
 ---
@@ -21,7 +21,7 @@ const rows = [
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <title>Plume vs Mailchimp vs ConvertKit — newsletter cost compared</title>
-  <meta name="description" content="See how Plume's self-hosted, send-through-your-own-Amazon-SES model compares to Mailchimp and ConvertKit on price, data ownership, and features as your list grows." />
+  <meta name="description" content="See how Plume's self-hosted, send-through-your-own-email-provider model compares to Mailchimp and ConvertKit on price, data ownership, and features as your list grows." />
   <link rel="canonical" href={canonical} />
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Plume vs Mailchimp vs ConvertKit — newsletter cost compared" />
@@ -123,6 +123,7 @@ const rows = [
         </div>
       </div>
       <p style="font-size:.78rem;color:var(--faint);margin:18px 0 0;font-style:italic;">Estimates from published Standard-tier pricing; SES at $0.10/1,000 emails. Add a small server (~$5–10/mo) to self-host Plume.</p>
+      <p style="font-size:.78rem;color:var(--faint);margin:6px 0 0;font-style:italic;">Calculated with Amazon SES pricing — Plume works with any SMTP provider.</p>
     </div>
 
     <!-- FEATURE MATRIX -->
@@ -153,7 +154,7 @@ const rows = [
       </div>
       <div style="border:1px solid var(--border);border-radius:14px;padding:20px;background:var(--surface);">
         <div style="font-weight:700;display:flex;align-items:center;gap:8px;margin-bottom:8px;"><span style="color:var(--amber);">!</span>Honest trade-offs</div>
-        <ul style="margin:0;padding-left:20px;color:var(--muted);font-size:.9rem;"><li style="margin-bottom:5px;">You run a server and an AWS account</li><li style="margin-bottom:5px;">You warm up your own sending domain</li><li style="margin-bottom:5px;">No phone support — community + docs</li></ul>
+        <ul style="margin:0;padding-left:20px;color:var(--muted);font-size:.9rem;"><li style="margin-bottom:5px;">You run a server and configure an email provider</li><li style="margin-bottom:5px;">You warm up your own sending domain</li><li style="margin-bottom:5px;">No phone support — community + docs</li></ul>
       </div>
     </div>
 

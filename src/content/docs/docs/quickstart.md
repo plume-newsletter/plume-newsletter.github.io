@@ -7,7 +7,7 @@ Get Plume running locally and send your first test email in about five minutes.
 
 ## Prerequisites
 
-You'll need **Docker** and **Docker Compose**. You do *not* need AWS to start — until you connect Amazon SES, Plume uses a built-in **log provider** that writes emails to stdout instead of sending them, so it runs with zero AWS setup. When you're ready to send for real, an SES access key and secret are entered in the app UI (see [Connecting Amazon SES](/docs/connecting-ses/)).
+You'll need **Docker** and **Docker Compose**. You do *not* need an email provider to start — until you connect one, Plume uses a built-in **log provider** that writes emails to stdout instead of sending them, so it runs with zero setup. When you're ready to send for real, connect [Amazon SES](/docs/connecting-ses/) (cheapest at volume) or [any SMTP provider](/docs/email-providers/) — Mailgun, SendGrid, Postmark, Resend, and more — in the app UI.
 
 ## 1. Clone
 
@@ -89,5 +89,5 @@ http.DefaultClient.Do(req)
 ## Troubleshooting
 
 :::caution[Email rejected?]
-While SES is in sandbox mode you can only send to verified addresses. (Before SES is configured at all, the log provider just prints the message to stdout — nothing is rejected.) See [Connecting Amazon SES](/docs/connecting-ses/) to leave the sandbox.
+If you're using SES, new accounts start in sandbox mode and can only send to verified addresses. (Before any provider is configured, the log provider just prints the message to stdout — nothing is rejected.) See [Connecting Amazon SES](/docs/connecting-ses/) to leave the sandbox.
 :::

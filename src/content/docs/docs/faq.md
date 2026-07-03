@@ -9,7 +9,11 @@ Quick answers to the things people hit most. Still stuck? Open a discussion on [
 
 ### "Email address not verified"
 
-Amazon SES is still in sandbox mode. Verify the recipient or request production access — see [Connecting Amazon SES](/docs/connecting-ses/). SES credentials are entered in the app UI under **Settings**, not as environment variables.
+If you're sending through Amazon SES, your account is still in sandbox mode. Verify the recipient or request production access — see [Connecting Amazon SES](/docs/connecting-ses/). Provider credentials are entered in the app UI under **Settings**, not as environment variables.
+
+### Do I need an AWS account?
+
+No. SES is the cheapest option at volume, but Plume sends through any SMTP provider (Mailgun, SendGrid, Postmark, Resend, …). See [Email providers](/docs/email-providers/).
 
 ### "Database connection refused"
 
@@ -25,4 +29,4 @@ Keep your bounce rate under 5% and complaints under 0.1% — Plume's auto-suppre
 
 ## Performance
 
-Plume runs as a **single process** with the send worker and automation worker as in-process goroutines. One instance comfortably handles lists in the hundreds of thousands; the send worker drips to SES within your configured rate so you never burst past your quota. There is no separate worker process to run or scale — sending throughput is governed by your SES rate limit, not by Plume.
+Plume runs as a **single process** with the send worker and automation worker as in-process goroutines. One instance comfortably handles lists in the hundreds of thousands; the send worker drips to your configured provider within its rate limit so you never burst past your quota. There is no separate worker process to run or scale — sending throughput is governed by your provider's rate limit, not by Plume.

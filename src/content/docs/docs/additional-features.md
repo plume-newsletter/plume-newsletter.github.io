@@ -11,7 +11,7 @@ A Claude-backed assistant woven through the app: rewrite copy, chat about a camp
 
 ## Analytics
 
-An owner-level overview of your sending: subscriber totals, engagement rates, estimated SES cost, growth and volume over time, best send times, and per-campaign metrics. Endpoints live under `/api/analytics/*`.
+An owner-level overview of your sending: subscriber totals, engagement rates, estimated sending cost, growth and volume over time, best send times, and per-campaign metrics. Endpoints live under `/api/analytics/*`.
 
 ## Automations
 
