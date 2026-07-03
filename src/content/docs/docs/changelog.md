@@ -5,7 +5,7 @@ description: Notable changes to Plume.
 
 Notable changes to Plume.
 
-## v0.2.0 — unreleased
+## v0.2.0 — 2026-07-03
 
 - **SMTP email provider** — send through Mailgun, SendGrid, Postmark, Resend,
   or any SMTP server; no AWS account required. Choose the active provider
