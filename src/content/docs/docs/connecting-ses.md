@@ -5,6 +5,8 @@ description: Connect your own Amazon SES account to send mail, verify a domain, 
 
 Plume sends through your own SES account using AWS SES v2. This page walks through credentials, domain verification, leaving the sandbox, and feedback.
 
+Not on AWS? Plume also sends through [any SMTP provider](/docs/email-providers/) — Mailgun, SendGrid, Postmark, Resend, and more.
+
 Your SES credentials — region, access key id, and secret — are entered in the app under **Settings**, not as environment variables. Plume stores them AES-encrypted at rest. Until you configure SES, Plume uses a built-in **log provider** that prints emails to stdout instead of sending them, so you can develop and test with zero AWS setup.
 
 ## Create IAM credentials

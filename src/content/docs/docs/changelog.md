@@ -5,9 +5,17 @@ description: Notable changes to Plume.
 
 Notable changes to Plume.
 
-## Current (pre-release)
+## v0.2.0 — unreleased
 
-Plume is in active pre-release. This entry summarizes the shipped surface:
+- **SMTP email provider** — send through Mailgun, SendGrid, Postmark, Resend,
+  or any SMTP server; no AWS account required. Choose the active provider
+  (SES or SMTP) in **Settings → Email**. One-click unsubscribe headers are
+  preserved on the SMTP path; bounce/complaint auto-suppression remains
+  SES-only for now. See [Email providers](/docs/email-providers/).
+
+## v0.1.0 — first public release
+
+This entry summarizes the shipped surface:
 
 - **Audience** — brands, lists, and subscribers with custom fields; CSV import; double opt-in.
 - **Campaigns** — HTML campaign composition with templates and reusable blocks.
