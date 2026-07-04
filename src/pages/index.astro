@@ -551,7 +551,7 @@ const canonical = Astro.site?.href ?? '/';
           <p style="color:var(--muted);font-size:1.04rem;margin:12px 0 0;text-wrap:pretty;">We'll email you when Plume Cloud opens — hosting, backups, and updates handled, your email provider and your data still yours. No spam, just the launch.</p>
           <div id="wait-open">
             <form id="wait-form" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:26px;">
-              <input type="email" id="wait-email" placeholder="you@company.com" aria-label="Email address" style="flex:1;min-width:220px;padding:13px 15px;border-radius:10px;border:1px solid var(--border-strong);background:var(--bg);color:var(--fg);font-size:1rem;" style-focus="outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-weak);" />
+              <input type="email" id="wait-email" placeholder="you@company.com" aria-label="Email address" required style="flex:1;min-width:220px;padding:13px 15px;border-radius:10px;border:1px solid var(--border-strong);background:var(--bg);color:var(--fg);font-size:1rem;" style-focus="outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-weak);" />
               <button type="submit" style="display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:10px;border:none;background:var(--amber);color:#fff;font-weight:600;font-size:1rem;cursor:pointer;box-shadow:var(--shadow-sm);white-space:nowrap;" style-hover="filter:brightness(.94);" style-focus="outline:2px solid var(--amber);outline-offset:2px;">Notify me</button>
             </form>
             <div id="wait-error-wrap" style="display:none;">
@@ -700,20 +700,6 @@ const canonical = Astro.site?.href ?? '/';
     if (l) { l.textContent = 'Copied!'; setTimeout(() => (l.textContent = 'Copy'), 1800); }
   });
 
-  // cloud waitlist — ponytail: client-only success; POST to a real endpoint when the waitlist exists
-  document.getElementById('wait-form')?.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const email = (document.getElementById('wait-email').value || '').trim();
-    const errWrap = document.getElementById('wait-error-wrap');
-    if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) {
-      errWrap.style.display = '';
-      set('wait-error-msg', 'Please enter a valid email address.');
-      return;
-    }
-    errWrap.style.display = 'none';
-    document.getElementById('wait-open').style.display = 'none';
-    document.getElementById('wait-done').style.display = '';
-  });
 
   // live GitHub star count (per-visitor IP quota; static fallback already rendered)
   fetch('https://api.github.com/repos/plume-newsletter/plume')
@@ -724,6 +710,48 @@ const canonical = Astro.site?.href ?? '/';
       set('gh-stars', n >= 1000 ? (n / 1000).toFixed(1).replace(/\.0$/, '') + 'k' : String(n));
     })
     .catch(() => {});
+</script>
+<script>
+  (() => {
+    const form = document.getElementById('wait-form');
+    if (!form) return;
+    const email = document.getElementById('wait-email');
+    const openEl = document.getElementById('wait-open');
+    const doneEl = document.getElementById('wait-done');
+    const errWrap = document.getElementById('wait-error-wrap');
+    const errMsg = document.getElementById('wait-error-msg');
+    const btn = form.querySelector('button[type="submit"]');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const value = (email.value || '').trim();
+      if (!value) return;
+      errWrap.style.display = 'none';
+      const label = btn.textContent;
+      btn.disabled = true;
+      btn.textContent = '…';
+      try {
+        const res = await fetch('https://app.plumenewsletter.com/api/waitlist', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email: value }),
+        });
+        if (res.ok) {
+          openEl.style.display = 'none';
+          doneEl.style.display = 'block';
+          return;
+        }
+        errMsg.textContent = res.status === 429
+          ? 'Too many attempts — try again in a minute.'
+          : 'Something went wrong — please try again.';
+      } catch (_) {
+        errMsg.textContent = 'Network error — please try again.';
+      }
+      errWrap.style.display = 'block';
+      btn.disabled = false;
+      btn.textContent = label;
+    });
+  })();
 </script>
 </body>
 </html>
