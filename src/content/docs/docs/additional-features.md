@@ -7,7 +7,15 @@ These features all ship in the current release. Deeper per-feature guides are co
 
 ## AI assistant
 
-A Claude-backed assistant woven through the app: rewrite copy, chat about a campaign, get subject-line suggestions, surface campaign insights, and turn natural language into segment rules. Set your Anthropic API key in **Settings**, where it's stored encrypted. Endpoints live under `/api/ai/*`.
+A Claude-backed assistant woven through the app: rewrite copy, chat about a campaign, get subject-line suggestions, surface campaign insights, and turn natural language into segment rules. Set your Anthropic API key in **Settings**, where it's stored encrypted. Endpoints live under `/api/ai/*`. Like the rest of Plume's AI features, it's entirely optional — nothing here runs, and no key ever leaves your workspace's config, unless you set one.
+
+### Campaign copilot
+
+Instead of starting from a blank campaign, describe what you want in the "New campaign" dialog — "✨ Or describe it and let AI draft everything" — and the editor opens straight into the copilot panel with a full draft already applied: subject and body blocks written, ready to review.
+
+From there it's conversational: keep chatting in the panel to refine the draft ("make it shorter", "add a discount code", "more casual tone") and each reply replaces the draft in the editor, with a single-step **Undo** if a change misses the mark. When your request implies a target audience — "send this to people who haven't opened in 30 days" — the panel proposes one as a plain-language summary and a subscriber count, with a **Save audience** button that turns it into a segment you can pick when you send. It can also surface **send-time advice** grounded in your own analytics, not a generic heuristic.
+
+The copilot only ever hands you a draft — it never sends a campaign itself; sending is still a deliberate, separate step you take from the send dialog. See [`POST /ai/campaign`](/docs/rest-api/) for the underlying contract.
 
 ## Analytics
 

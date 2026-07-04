@@ -65,12 +65,55 @@ CRUD on `/api/campaigns`, plus send/test/report actions:
 | `POST` | `/api/campaigns/{id}/send` | Send the campaign |
 | `GET` | `/api/campaigns/{id}/report` | Fetch the campaign report |
 
+`POST /api/campaigns/{id}/send` takes a body with **exactly one** of `listId` or `segmentId` — sending to a segment resolves only its currently-matching, `active`-status subscribers:
+
+```json
+{ "segmentId": "3f9c2b7e-1a2b-4c3d-9e8f-0a1b2c3d4e5f" }
+```
+
+```json
+{ "recipients": 4213 }
+```
+
+Both keys present, or neither, is a `400` (`provide exactly one of listId or segmentId`); an unknown list/segment/campaign is a `404`; a campaign that's already queued or sent is a `409`.
+
 ## Analytics
 
 | Method | Path | Description |
 |---|---|---|
 | `GET` | `/api/analytics/overview` | Aggregate engagement overview |
 | `GET` | `/api/analytics/deliverability` | Deliverability metrics |
+
+## AI
+
+The [AI assistant](/docs/additional-features/) endpoints under `/api/ai/*`, including the campaign copilot. All of them require an Anthropic API key configured under **Settings → AI** — without one, every route in this section returns `400 AI not configured`.
+
+`POST /api/ai/campaign` drafts or refines a campaign in one turn: send the chat history plus the editor's current state, get back a complete replacement draft.
+
+```json
+{
+  "messages": [{ "role": "user", "content": "Black Friday promo, 20% off" }],
+  "state": { "subject": "", "blocks": [], "audience": null }
+}
+```
+
+```json
+{
+  "reply": "Drafted a Black Friday promo with a 20%-off code and a shop-now button.",
+  "subject": "20% off, today only",
+  "blocks": [
+    { "type": "heading", "text": "Black Friday is here", "level": 1 },
+    { "type": "text", "html": "<p>Take <strong>20% off</strong> everything, today only.</p>" },
+    { "type": "button", "label": "Shop now", "href": "#", "align": "center" }
+  ],
+  "audience": null,
+  "sendTimeAdvice": "Your last three campaigns opened best around 9am on weekdays."
+}
+```
+
+`state.blocks` uses Plume's standard [block editor](/docs/additional-features/) JSON (`heading` / `text` / `image` / `button` / `divider` / `spacer`) — the AI never invents image URLs, leaving `src` empty with a descriptive `alt` for you to fill in. If the request implies a target audience ("send this to people who haven't opened in 30 days"), the response also includes `audience` (the same match/conditions shape as [segments](/docs/additional-features/)) and `audienceCount`; the UI lets you save that as a segment in one click. `sendTimeAdvice` is grounded in your own analytics and only appears when there's enough data to say something.
+
+The server validates the model's blocks and audience before responding (retrying once internally on a bad draft) and returns `502 AI produced an invalid draft` rather than ever handing back something that would fail to render. This endpoint never sends email — it only returns a draft for you to review in the editor.
 
 ## Settings
 

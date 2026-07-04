@@ -5,6 +5,19 @@ description: Notable changes to Plume.
 
 Notable changes to Plume.
 
+## Unreleased
+
+- **AI campaign copilot** — describe a campaign in plain language from the
+  "New campaign" dialog and get a full draft (subject + body blocks) ready to
+  refine by chatting; it can propose a target audience as a one-click segment
+  and give send-time advice grounded in your analytics. Optional — requires
+  an Anthropic API key in **Settings**; it never sends a campaign itself. See
+  [`POST /ai/campaign`](/docs/rest-api/).
+- **Segment-targeted sends** — the send dialog now has **List** and
+  **Segment** tabs; sending to a segment reaches only its currently-matching,
+  `active`-status subscribers. Suppression and one-click unsubscribe are
+  unchanged. See [Sending & the worker](/docs/sending/).
+
 ## v0.2.0 — 2026-07-03
 
 - **SMTP email provider** — send through Mailgun, SendGrid, Postmark, Resend,
