@@ -1,5 +1,8 @@
 <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 32 32">
   <rect width="32" height="32" rx="9" fill="#2f4fcf"/>
-  <path d="M16 5.5C21.5 10.6 21.5 22.4 16 28.5C10.5 22.4 10.5 10.6 16 5.5Z" fill="#fff"/>
-  <path d="M16 8V28.5" stroke="#2f4fcf" stroke-width="1.6" stroke-linecap="round"/>
+  <svg x="6" y="6" width="20" height="20" viewBox="0 0 100 100">
+    <g transform="rotate(-34 50 50)">
+      <path fill="#fff" fill-rule="evenodd" d="M50 6 C70 22 80 46 71 66 C66 78 58 88 50 96 C42 88 34 78 29 66 C20 46 30 22 50 6 Z M50 24 C52 42 52 64 51 86 C50 90 50 90 49 86 C48 64 48 42 50 24 Z"/>
+    </g>
+  </svg>
 </svg>
