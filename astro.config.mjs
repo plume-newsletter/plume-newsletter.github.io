@@ -2,11 +2,11 @@ import { defineConfig } from 'astro/config';
 import sitemap from '@astrojs/sitemap';
 import starlight from '@astrojs/starlight';
 
-// Hosted on GitHub Pages at the org root site (repo: plume-newsletter.github.io).
-// `site` drives canonical URLs + the sitemap; when a custom domain is added,
-// change it here and drop a public/CNAME file (no base path needed either way).
+// Hosted on GitHub Pages (repo: plume-newsletter.github.io) at the custom
+// domain plumenewsletter.com. `site` drives canonical URLs + the sitemap;
+// public/CNAME pins the custom domain (no base path needed either way).
 export default defineConfig({
-  site: 'https://plume-newsletter.github.io',
+  site: 'https://plumenewsletter.com',
   integrations: [
     starlight({
       title: 'Plume docs',
