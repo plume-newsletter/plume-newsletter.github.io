@@ -5,7 +5,7 @@ description: Notable changes to Plume.
 
 Notable changes to Plume.
 
-## Unreleased
+## v0.4.0 — 2026-07-05
 
 - **AI campaign copilot** — describe a campaign in plain language from the
   "New campaign" dialog and get a full draft (subject + body blocks) ready to
