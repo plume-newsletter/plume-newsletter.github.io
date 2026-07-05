@@ -14,6 +14,11 @@
   --sl-color-accent: oklch(0.623 0.188 260);
   --sl-color-accent-high: oklch(0.34 0.14 260);
   --sl-color-text-accent: oklch(0.470 0.188 260);
+  /* asides ("Note") draw from Starlight's blue palette (hue-234 periwinkle
+     by default) — align it with the brand blue */
+  --sl-color-blue-low: oklch(0.95 0.025 260);
+  --sl-color-blue: oklch(0.623 0.188 260);
+  --sl-color-blue-high: oklch(0.40 0.15 260);
 }
 
 /* dark */
@@ -22,4 +27,20 @@
   --sl-color-accent: oklch(0.623 0.188 259.815);
   --sl-color-accent-high: oklch(0.86 0.06 262);
   --sl-color-text-accent: oklch(0.720 0.150 262);
+  --sl-color-blue-low: oklch(0.28 0.06 260);
+  --sl-color-blue: oklch(0.623 0.188 260);
+  --sl-color-blue-high: oklch(0.80 0.09 260);
+}
+
+/* Starlight paints the current sidebar item with --sl-color-text-accent
+   (our dark link blue) — use the brand blue, like the app's primary. */
+.sidebar-content a[aria-current='page'] {
+  background-color: var(--sl-color-accent);
+  color: #fff;
+}
+
+/* Site title in plain text color (Starlight tints it with the accent) —
+   matches the landing header's black "Plume". */
+.site-title {
+  color: var(--sl-color-text);
 }
