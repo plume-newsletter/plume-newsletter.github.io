@@ -19,7 +19,7 @@ export default defineConfig({
       ],
       sidebar: [
         { label: 'Getting started', items: [{ slug: 'docs', label: 'Introduction' }, 'docs/quickstart', 'docs/installation', 'docs/configuration'] },
-        { label: 'Guides', items: ['docs/connecting-ses', 'docs/email-providers', 'docs/brands-lists-campaigns', 'docs/subscribers', 'docs/sending', 'docs/tracking-suppression', 'docs/additional-features', 'docs/n8n'] },
+        { label: 'Guides', items: ['docs/connecting-ses', 'docs/email-providers', 'docs/brands-lists-campaigns', 'docs/subscribers', 'docs/sending', 'docs/tracking-suppression', 'docs/additional-features', 'docs/rss', 'docs/n8n'] },
         { label: 'Reference', items: ['docs/hooks', 'docs/webhooks', 'docs/rest-api', 'docs/cli'] },
         { label: 'More', items: ['docs/migrating', 'docs/faq', 'docs/changelog'] },
       ],

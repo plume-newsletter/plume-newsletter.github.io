@@ -40,6 +40,10 @@ The **Plume** node exposes:
 
 Stripe Trigger (new payment) → **Plume: Create Subscriber** into your "Customers" list → your `Customers` segment powers a members-only campaign via **Campaign → Send**.
 
+## Example: RSS with custom rules
+
+Plume has [built-in RSS import](/docs/rss/) for the simple case. For custom pipelines — only certain categories, multiple blogs into one brand, an approval step — use n8n's **RSS Feed Trigger** → filter → **Plume: Create Campaign Draft**.
+
 ## Roadmap
 
 More trigger events (opens, clicks, bounces) will land as the webhook catalog grows — the node picks them up by version bump.

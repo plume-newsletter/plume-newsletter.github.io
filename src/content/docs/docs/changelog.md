@@ -5,6 +5,10 @@ description: Notable changes to Plume.
 
 Notable changes to Plume.
 
+## Unreleased
+
+- **RSS blog-to-newsletter** — connect a brand to your blog's RSS or Atom feed, and Plume drafts a campaign for every new post (published after connection). Pick "Post as-is" for the raw HTML, or "Let AI write it" to let the copilot rewrite each post as a newsletter following your standing instruction. Validates feeds immediately; polls every 15 minutes; max 3 drafts per check. See [Turn your blog into a newsletter](/docs/rss/).
+
 ## v0.4.0 — 2026-07-05
 
 - **AI campaign copilot** — describe a campaign in plain language from the
