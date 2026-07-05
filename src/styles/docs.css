@@ -10,10 +10,10 @@
 
 /* light */
 :root[data-theme='light'] {
-  --sl-color-accent-low: oklch(0.93 0.04 264);
-  --sl-color-accent: oklch(0.474 0.181 265.638);
-  --sl-color-accent-high: oklch(0.34 0.14 265);
-  --sl-color-text-accent: oklch(0.470 0.181 265.638);
+  --sl-color-accent-low: oklch(0.93 0.04 260);
+  --sl-color-accent: oklch(0.623 0.188 260);
+  --sl-color-accent-high: oklch(0.34 0.14 260);
+  --sl-color-text-accent: oklch(0.470 0.188 260);
 }
 
 /* dark */
