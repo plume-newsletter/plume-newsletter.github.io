@@ -24,6 +24,8 @@ Bring your Ghost audience into Plume by uploading Ghost's members export. Your p
 
 Ghost's other columns — labels, tiers, notes, Stripe data — are ignored. Only email, name, and subscription status are read.
 
+The import is a point-in-time snapshot, not an ongoing sync. It reads the status in the file you upload; it doesn't keep watching Ghost. If someone unsubscribes on Ghost later, re-importing an older export won't change a member already in your Plume list — manage unsubscribes in Plume from then on.
+
 ## Bringing your posts across
 
 New posts publish into Plume automatically once you [connect your Ghost RSS feed](/docs/rss/) (`https://yourblog.com/rss/`). Existing posts aren't back-filled; re-publish any you want as a fresh newsletter, or let RSS pick up new ones from here on.
