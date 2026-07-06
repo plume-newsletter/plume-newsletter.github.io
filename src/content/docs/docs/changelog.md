@@ -9,6 +9,7 @@ Notable changes to Plume.
 
 - **RSS blog-to-newsletter** — connect a brand to your blog's RSS or Atom feed, and Plume drafts a campaign for every new post (published after connection). Pick "Post as-is" for the raw HTML, or "Let AI write it" to let the copilot rewrite each post as a newsletter following your standing instruction. Validates feeds immediately; polls every 15 minutes; max 3 drafts per check. See [Turn your blog into a newsletter](/docs/rss/).
 - **Migrate from Ghost** — upload Ghost's members export into the subscriber CSV import and your subscribed readers arrive as active subscribers, ready to email; members who opted out of Ghost emails are skipped. See [Migrate from Ghost](/docs/ghost-migration/).
+- **WordPress signup form** — the Plume WordPress plugin adds a signup form (shortcode or widget) that enrolls visitors into a Plume list via double opt-in. No API key stored. See [WordPress signup form](/docs/wordpress/).
 
 ## v0.4.0 — 2026-07-05
 
