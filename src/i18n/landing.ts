@@ -141,10 +141,6 @@ export const en = {
         title: 'Signup forms for WordPress',
         body: 'Drop a signup form on your WordPress site with a shortcode or widget — new subscribers confirm by email, no API key required.',
       },
-      i18n: {
-        title: 'English & Thai interface',
-        body: 'The dashboard ships in both languages out of the box — community translations for more are welcome.',
-      },
     },
   },
   how: {
@@ -454,10 +450,6 @@ export const th: LandingStrings = {
       wordpress: {
         title: 'ฟอร์มสมัครสำหรับ WordPress',
         body: 'วางฟอร์มสมัครบนเว็บ WordPress ได้ด้วย shortcode หรือ widget ผู้ติดตามใหม่ยืนยันทางอีเมล ไม่ต้องใช้ API key',
-      },
-      i18n: {
-        title: 'อินเทอร์เฟซภาษาอังกฤษ & ไทย',
-        body: 'แดชบอร์ดมาพร้อมทั้งสองภาษาตั้งแต่ต้น เปิดรับคำแปลจากชุมชนสำหรับภาษาอื่น ๆ เพิ่มเติม',
       },
     },
   },
