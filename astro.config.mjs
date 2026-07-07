@@ -17,13 +17,20 @@ export default defineConfig({
       social: [
         { icon: 'github', label: 'GitHub', href: 'https://github.com/plume-newsletter/plume' },
       ],
+      defaultLocale: 'root',
+      locales: {
+        root: { label: 'English', lang: 'en' },
+        th: { label: 'ไทย', lang: 'th' },
+      },
       sidebar: [
-        { label: 'Getting started', items: [{ slug: 'docs', label: 'Introduction' }, 'docs/quickstart', 'docs/installation', 'docs/configuration'] },
-        { label: 'Guides', items: ['docs/connecting-ses', 'docs/email-providers', 'docs/brands-lists-campaigns', 'docs/subscribers', 'docs/sending', 'docs/tracking-suppression', 'docs/additional-features', 'docs/rss', 'docs/ghost-migration', 'docs/wordpress', 'docs/n8n'] },
-        { label: 'Reference', items: ['docs/hooks', 'docs/webhooks', 'docs/rest-api', 'docs/cli'] },
-        { label: 'More', items: ['docs/migrating', 'docs/faq', 'docs/changelog'] },
+        { label: 'Getting started', translations: { th: 'เริ่มต้นใช้งาน' }, items: [{ slug: 'docs', label: 'Introduction', translations: { th: 'แนะนำ' } }, 'docs/quickstart', 'docs/installation', 'docs/configuration'] },
+        { label: 'Guides', translations: { th: 'คู่มือการใช้งาน' }, items: ['docs/connecting-ses', 'docs/email-providers', 'docs/brands-lists-campaigns', 'docs/subscribers', 'docs/sending', 'docs/tracking-suppression', 'docs/additional-features', 'docs/rss', 'docs/ghost-migration', 'docs/wordpress', 'docs/n8n'] },
+        { label: 'Reference', translations: { th: 'ข้อมูลอ้างอิง' }, items: ['docs/hooks', 'docs/webhooks', 'docs/rest-api', 'docs/cli'] },
+        { label: 'More', translations: { th: 'เพิ่มเติม' }, items: ['docs/migrating', 'docs/faq', 'docs/changelog'] },
       ],
     }),
-    sitemap(),
+    sitemap({
+      i18n: { defaultLocale: 'en', locales: { en: 'en', th: 'th' } },
+    }),
   ],
 });
