@@ -644,7 +644,7 @@ const hreflangTh = new URL('th/', site).href;
           <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px;">
             <li><a href="#features" style="text-decoration:none;color:var(--fg);font-size:.92rem;" style-hover="color:var(--primary);">{t.footer.productLinks.features}</a></li>
             <li><a href="#pricing" style="text-decoration:none;color:var(--fg);font-size:.92rem;" style-hover="color:var(--primary);">{t.footer.productLinks.pricing}</a></li>
-            <li><a href="/compare/" style="text-decoration:none;color:var(--fg);font-size:.92rem;" style-hover="color:var(--primary);">{t.footer.productLinks.compare}</a></li>
+            <li><a href={locale === 'th' ? '/th/compare/' : '/compare/'} style="text-decoration:none;color:var(--fg);font-size:.92rem;" style-hover="color:var(--primary);">{t.footer.productLinks.compare}</a></li>
             <li><a href="#plans" style="text-decoration:none;color:var(--fg);font-size:.92rem;" style-hover="color:var(--primary);">{t.footer.productLinks.cloud}</a></li>
             <li><a href="#how" style="text-decoration:none;color:var(--fg);font-size:.92rem;" style-hover="color:var(--primary);">{t.footer.productLinks.how}</a></li>
           </ul>
