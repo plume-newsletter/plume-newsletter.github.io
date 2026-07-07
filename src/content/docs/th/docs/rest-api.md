@@ -19,7 +19,7 @@ curl https://your-plume.example.com/api/subscribers \
   -H "Authorization: Bearer plume_xxx"
 ```
 
-## Auth & health
+## การยืนยันตัวตนและ health check
 
 | Method | Path | Description |
 |---|---|---|
@@ -135,11 +135,11 @@ Flow เหล่านี้ขับเคลื่อนหน้าตาท
 |---|---|---|
 | `POST` | `/subscribe/{listId}` | สมัครรับข่าวสารแบบสาธารณะ |
 | `GET` | `/confirm/{subscriberId}` | ยืนยัน double opt-in |
-| `GET` `POST` | `/u/{recipientId}` | Unsubscribe |
-| `GET` | `/f/{id}` | Hosted signup form |
-| `POST` | `/webhook/ses` | SNS bounce/complaint feedback |
+| `GET` `POST` | `/u/{recipientId}` | ยกเลิกรับข่าวสาร (unsubscribe) |
+| `GET` | `/f/{id}` | ฟอร์มสมัครรับข่าวสารแบบโฮสต์ให้ |
+| `POST` | `/webhook/ses` | รับ feedback ประเภท bounce/complaint จาก SNS |
 
-## Error
+## ข้อผิดพลาด
 
 Error ใช้ HTTP status code มาตรฐานพร้อม JSON body:
 

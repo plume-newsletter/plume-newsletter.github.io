@@ -1,5 +1,5 @@
 ---
-title: Outbound webhook
+title: Webhook ขาออก
 description: ให้ Plume POST JSON payload ของ event ที่เซ็นด้วยลายเซ็นไปยัง URL ของคุณเอง — ไม่ต้องเขียนโค้ด
 ---
 

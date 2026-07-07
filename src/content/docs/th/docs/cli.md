@@ -24,7 +24,7 @@ Import CSV **ไม่ใช่** คำสั่ง — มันคือ API 
 docker compose up -d
 ```
 
-### Prebuilt binary
+### Binary สำเร็จรูป
 
 ดาวน์โหลด release binary ตั้งค่า [environment variable](/th/docs/configuration/) แล้วรัน:
 
@@ -38,10 +38,10 @@ docker compose up -d
 go run ./cmd/plume
 ```
 
-## Configuration
+## การตั้งค่า
 
 การตั้งค่าทั้งหมดทำผ่าน environment variable — ไม่มีไฟล์ config และไม่มี `.env.example` ดู [Configuration](/th/docs/configuration/) สำหรับรายการตัวแปร `PLUME_*` ทั้งหมด
 
-## Health check
+## การตรวจสอบสถานะ (health check)
 
 Plume มี health endpoint ที่ `GET /health` เหมาะสำหรับ load balancer และ container health probe
