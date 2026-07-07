@@ -52,3 +52,9 @@ Workspace-scoped keys for the REST API. Create and manage them under `/api/api-k
 ## Block editor
 
 Campaigns are authored as an array of blocks that Plume renders to email-safe HTML plus a plain-text alternative. Render a block array with `POST /api/blocks/render`.
+
+## Interface languages
+
+The dashboard ships in English and Thai. Switch anytime in **Settings → General** — the change applies immediately and is remembered per browser (English is the default for new sessions). The same toggle is also available on the login page, before you're signed in.
+
+Adding a community locale is a translation exercise, not a code change: copy `web/src/i18n/en.json` into a new `<lang>.json`, translate the strings, and register it in `web/src/i18n/index.ts` — PRs welcome.
