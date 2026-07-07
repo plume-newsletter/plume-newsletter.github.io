@@ -10,7 +10,7 @@ description: การเปลี่ยนแปลงสำคัญของ 
 - **RSS blog-to-newsletter** — เชื่อมต่อ brand เข้ากับ RSS หรือ Atom feed ของบล็อกคุณ แล้ว Plume จะร่าง campaign ให้อัตโนมัติสำหรับทุกโพสต์ใหม่ (ที่เผยแพร่หลังจากเชื่อมต่อ) เลือก "Post as-is" เพื่อใช้ HTML ดิบตามเดิม หรือ "Let AI write it" เพื่อให้ copilot เขียนแต่ละโพสต์ใหม่เป็นจดหมายข่าวตามคำสั่ง (instruction) ที่คุณตั้งไว้ ระบบตรวจสอบความถูกต้องของ feed ทันที โพลทุก 15 นาที และร่างได้สูงสุด 3 ฉบับต่อการตรวจสอบหนึ่งครั้ง ดู [Turn your blog into a newsletter](/th/docs/rss/)
 - **ย้ายจาก Ghost** — อัปโหลดไฟล์ export สมาชิกจาก Ghost เข้าสู่ตัวนำเข้า CSV ของ subscriber แล้วผู้อ่านที่ subscribed จะเข้ามาเป็น subscriber สถานะ active พร้อมส่งอีเมลได้ทันที ส่วนสมาชิกที่ opt-out จากอีเมลของ Ghost จะถูกข้ามไป ดู [Migrate from Ghost](/th/docs/ghost-migration/)
 - **แบบฟอร์มสมัครรับข่าวสารบน WordPress** — ปลั๊กอิน Plume สำหรับ WordPress เพิ่มแบบฟอร์มสมัครรับข่าวสาร (shortcode หรือ widget) ที่ลงทะเบียนผู้เข้าชมเข้าสู่ list ของ Plume ผ่าน double opt-in โดยไม่มีการเก็บ API key ใด ๆ ดู [WordPress signup form](/th/docs/wordpress/)
-- **อินเทอร์เฟซภาษาไทย** — แดชบอร์ดรองรับทั้งภาษาอังกฤษและภาษาไทยแล้ว สลับได้ทุกเมื่อที่ **Settings → General** (มีปุ่มสลับที่หน้า login ด้วย) การเพิ่มภาษาจากชุมชน: คัดลอก `web/src/i18n/en.json` เป็น `<lang>.json` ใหม่ แล้วลงทะเบียนไว้ใน `web/src/i18n/index.ts` ดู [ภาษาของอินเทอร์เฟซ](/th/docs/additional-features/)
+- **อินเทอร์เฟซภาษาไทย** — แดชบอร์ดรองรับทั้งภาษาอังกฤษและภาษาไทยแล้ว สลับได้ทุกเมื่อที่ **Settings → General** (มีปุ่มสลับที่หน้า login ด้วย) ยินดีรับคำแปลจากชุมชน: แปล `web/src/i18n/en.json` เป็นภาษาของคุณแล้วเปิด PR เข้ามาได้เลย — เราจะช่วยต่อภาษาใหม่เข้ากับตัวสลับภาษาให้ ดู [ภาษาของอินเทอร์เฟซ](/th/docs/additional-features/)
 
 ## v0.4.0 — 2026-07-05
 

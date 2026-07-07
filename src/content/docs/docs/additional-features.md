@@ -57,4 +57,4 @@ Campaigns are authored as an array of blocks that Plume renders to email-safe HT
 
 The dashboard ships in English and Thai. Switch anytime in **Settings → General** — the change applies immediately and is remembered per browser (English is the default for new sessions). The same toggle is also available on the login page, before you're signed in.
 
-Adding a community locale is a translation exercise, not a code change: copy `web/src/i18n/en.json` into a new `<lang>.json`, translate the strings, and register it in `web/src/i18n/index.ts` — PRs welcome.
+Want Plume in your language? Translate `web/src/i18n/en.json` into your language and open a PR — we'll wire the new locale into the switcher.
