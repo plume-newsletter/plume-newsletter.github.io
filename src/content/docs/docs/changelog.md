@@ -1,49 +1,27 @@
 ---
 title: Changelog
-description: Notable changes to Plume.
+description: What shipped in each Plume release.
 ---
 
-Notable changes to Plume.
+All notable changes to Plume are documented here. This project follows
+[Keep a Changelog](https://keepachangelog.com/) and [Semantic Versioning](https://semver.org/).
 
-## Unreleased
+## 1.0.0
 
-- **RSS blog-to-newsletter** — connect a brand to your blog's RSS or Atom feed, and Plume drafts a campaign for every new post (published after connection). Pick "Post as-is" for the raw HTML, or "Let AI write it" to let the copilot rewrite each post as a newsletter following your standing instruction. Validates feeds immediately; polls every 15 minutes; max 3 drafts per check. See [Turn your blog into a newsletter](/docs/rss/).
-- **Migrate from Ghost** — upload Ghost's members export into the subscriber CSV import and your subscribed readers arrive as active subscribers, ready to email; members who opted out of Ghost emails are skipped. See [Migrate from Ghost](/docs/ghost-migration/).
-- **WordPress signup form** — the Plume WordPress plugin adds a signup form (shortcode or widget) that enrolls visitors into a Plume list via double opt-in. No API key stored. See [WordPress signup form](/docs/wordpress/).
-- **Thai interface** — the dashboard now ships in English and Thai; switch anytime in **Settings → General** (also available on the login screen). Community translations welcome: translate `web/src/i18n/en.json` into your language and open a PR — we'll wire the new locale into the switcher. See [Interface languages](/docs/additional-features/).
+Initial release. A complete self-hosted newsletter & email-marketing app for PHP 8.2+ / MySQL 8,
+shared-hosting friendly (one cron, no Redis/daemon).
 
-## v0.4.0 — 2026-07-05
+### Added
 
-- **AI campaign copilot** — describe a campaign in plain language from the
-  "New campaign" dialog and get a full draft (subject + body blocks) ready to
-  refine by chatting; it can propose a target audience as a one-click segment
-  and give send-time advice grounded in your analytics. Optional — requires
-  an Anthropic API key in **Settings**; it never sends a campaign itself. See
-  [`POST /ai/campaign`](/docs/rest-api/).
-- **Segment-targeted sends** — the send dialog now has **List** and
-  **Segment** tabs; sending to a segment reaches only its currently-matching,
-  `active`-status subscribers. Suppression and one-click unsubscribe are
-  unchanged. See [Sending & the worker](/docs/sending/).
-
-## v0.2.0 — 2026-07-03
-
-- **SMTP email provider** — send through Mailgun, SendGrid, Postmark, Resend,
-  or any SMTP server; no AWS account required. Choose the active provider
-  (SES or SMTP) in **Settings → Email**. One-click unsubscribe headers are
-  preserved on the SMTP path; bounce/complaint auto-suppression remains
-  SES-only for now. See [Email providers](/docs/email-providers/).
-
-## v0.1.0 — first public release
-
-This entry summarizes the shipped surface:
-
-- **Audience** — brands, lists, and subscribers with custom fields; CSV import; double opt-in.
-- **Campaigns** — HTML campaign composition with templates and reusable blocks.
-- **Sending & tracking** — background send worker that drips to Amazon SES within your rate limit; open, click, bounce, and complaint tracking; automatic suppression.
-- **Segments & A/B tests** — advanced segmentation and split testing.
-- **Automations** — multi-step automation journeys.
-- **AI** — AI-assisted copy and send-time help.
-- **Analytics** — engagement overview and a deliverability dashboard.
-- **Growth** — hosted signup forms.
-- **Collaboration** — teams.
-- **Developers** — a Go [hook system](/docs/hooks/), outbound [webhooks](/docs/webhooks/), API keys, and a [REST API](/docs/rest-api/) covering everything the UI can do.
+- Single-admin authentication (no public registration) and a guided, self-locking web installer.
+- Multi-brand support with a brand switcher; per-brand sender identity and full tenant isolation.
+- Lists and subscribers with custom fields, search/filter, and CSV import (including Ghost member exports).
+- Segments from status + list-membership rules (match all/any) with a live count preview.
+- Drag-and-drop campaign builder with a live email preview, a template gallery, and sanitized email-safe HTML output.
+- Sending to a list or segment via your own SMTP / Amazon SES, drained off the cron with automatic retries and post-send locking.
+- Open/click tracking, per-campaign reports (open/click/unsubscribe rates, top links), and dashboard performance tiles.
+- Public double-opt-in signup forms per list (hosted + embeddable, no API key), email confirmation, one-click unsubscribe (RFC 8058), and a resubscribe path.
+- Optional AI copilot (bring your own Anthropic key): conversational campaign drafting with apply/undo, audience suggestions and send-time advice, plus inline copy rewrite and subject-line suggestions.
+- Autoresponders / email automations: trigger-based multi-step sequences (list-join welcome series, segment-entry drips, signup-anniversary sends) with per-step open/click tracking, driven off the same one-minute cron.
+- Encrypted storage for SMTP and API credentials; Docker option alongside shared hosting.
+- Charts: campaign open-over-time and top-links, dashboard subscriber-growth and send-volume, and open/click rate bars across the dashboard and campaigns list.

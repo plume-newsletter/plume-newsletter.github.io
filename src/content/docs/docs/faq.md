@@ -1,32 +1,41 @@
 ---
-title: FAQ & troubleshooting
-description: Quick answers to the things people hit most when running Plume.
+title: FAQ
+description: Common questions about licensing, hosting, sending, and the AI copilot.
 ---
 
-Quick answers to the things people hit most. Still stuck? Open a discussion on [GitHub](https://github.com/plume-newsletter/plume).
+### What's the license?
 
-## Common errors
+Plume is sold under the CodeCanyon (Envato Market) commercial license — a one-time purchase, not
+a subscription. Your purchase entitles you to use it per the license tier you bought; please
+don't redistribute the code.
 
-### "Email address not verified"
+### What do I need to host it?
 
-If you're sending through Amazon SES, your account is still in sandbox mode. Verify the recipient or request production access — see [Connecting Amazon SES](/docs/connecting-ses/). Provider credentials are entered in the app UI under **Settings**, not as environment variables.
+PHP 8.2+ (with `pdo_mysql`, `openssl`, `mbstring`, `ctype`, `curl`, `fileinfo`, and `dom`),
+MySQL 8 or MariaDB 10.6+, and a single cron job. See [Installation](/docs/installation/) for the
+full walkthrough.
 
-### Do I need an AWS account?
+### My emails aren't sending — what do I check?
 
-No. SES is the cheapest option at volume, but Plume sends through any SMTP provider (Mailgun, SendGrid, Postmark, Resend, …). See [Email providers](/docs/email-providers/).
+Two things, in order:
 
-### "Database connection refused"
+1. Confirm your cron job is actually running — see [The cron job](/docs/cron/). Nothing sends
+   without it.
+2. Go to Settings → Mail and click **Send test** to verify your SMTP or SES credentials work.
 
-Check `PLUME_DATABASE_URL` and that Postgres is reachable from the container or host. Plume exits at startup if the database URL is unset, and it runs its embedded migrations automatically on every boot — there's no separate migrate step.
+### Can I try it before I buy?
 
-### Tracking links point to localhost
+Yes — the live demo is at [demo.plumenewsletter.com](https://demo.plumenewsletter.com). It
+resets hourly, and login credentials are shown right on the demo's login page.
 
-Set `PLUME_BASE_URL` to your public HTTPS URL so rewritten tracking and unsubscribe links resolve for recipients.
+### Does the AI copilot cost extra?
 
-## Deliverability
+No, but it's optional and bring-your-own-key: paste your own Anthropic API key in Settings → AI
+to enable it. Plume works fully without it — nothing else in the app requires a key. The copilot
+defaults to the `claude-sonnet-5` model.
 
-Keep your bounce rate under 5% and complaints under 0.1% — Plume's auto-suppression handles most of this for you. Always authenticate your sending domain with DKIM, SPF, and DMARC.
+### Where do I get support?
 
-## Performance
-
-Plume runs as a **single process** with the send worker and automation worker as in-process goroutines. One instance comfortably handles lists in the hundreds of thousands; the send worker drips to your configured provider within its rate limit so you never burst past your quota. There is no separate worker process to run or scale — sending throughput is governed by your provider's rate limit, not by Plume.
+Support is provided per your CodeCanyon support terms. When you reach out, include your PHP and
+MySQL versions and any relevant lines from `storage/logs/laravel.log` — it speeds things up
+considerably.

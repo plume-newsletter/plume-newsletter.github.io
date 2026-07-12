@@ -1,38 +1,43 @@
 ---
 title: Introduction
-description: Plume is an open-source, self-hosted newsletter platform that sends through your own email provider.
+description: Plume is a self-hosted newsletter platform you buy once and run on your own PHP hosting.
 ---
 
-Plume is an open-source, self-hosted newsletter platform. You send through your own email provider — Amazon SES, Mailgun, SendGrid, Postmark, Resend, or any SMTP server — at provider cost, never per subscriber — and your data never leaves your server.
+Plume is a complete, self-hosted email-marketing application. You buy it once on CodeCanyon,
+install it on your own server, and own it outright — no monthly SaaS fees, no per-subscriber
+pricing, and no data leaving your host.
 
-:::note
-New here? Jump straight to the [Quickstart](/docs/quickstart/) to get a working install in about five minutes.
-:::
+It's built to run on ordinary shared hosting: PHP and MySQL, plus a single cron job. No Redis,
+no background daemon, no build tools required on the server.
 
-## Why Plume
+## What you get
 
-Hosted newsletter tools price by subscriber count, so your bill climbs as your list grows — even though sending email is nearly free. Plume separates the two: the software is free and open source, and your only sending cost is what your email provider charges — as low as `$0.10` per 1,000 emails with Amazon SES.
+- **Multi-brand** — run several sender identities (from name/email, reply-to, logo) from one
+  install, with a quick brand switcher. Every list, subscriber, and campaign is scoped to its brand.
+- **Lists & subscribers** — unlimited lists and subscribers, custom fields, search/filter, and
+  CSV import (including Ghost member exports).
+- **Segments** — build audiences from status and list-membership rules (match all or any) with
+  a live subscriber-count preview.
+- **Campaign builder** — a drag-and-drop block editor (headings, text, images, buttons, dividers,
+  spacers, and more) with a live email preview and a gallery of ready-made templates. Output is
+  sanitized, 600px-wide table HTML that renders correctly across email clients.
+- **Sending** — send to a list or a segment through your own SMTP or Amazon SES. Delivery runs
+  off the cron in the background with automatic retries; campaigns lock after sending.
+- **Tracking & reports** — open and click tracking, per-campaign reports (open/click/unsubscribe
+  rates, top links), and performance charts on the dashboard.
+- **Signup forms & double opt-in** — every list gets a hosted signup form plus a copy-paste embed
+  snippet for any site. New subscribers confirm via email before they're active, and one-click
+  unsubscribe (RFC 8058) gives a clean resubscribe path.
+- **AI copilot (optional)** — bring your own Anthropic API key to draft and refine campaigns
+  conversationally. Plume works fully without it.
+- **Automations** — welcome series, segment-entry drips, and signup-anniversary sends, authored
+  in the same block builder and driven off the same one-minute cron.
 
-- **Own your sending** — Your own provider account, your reputation, your list — no middleman.
-- **Single binary** — One static Go binary with the UI embedded, plus Postgres.
-- **Open source** — AGPL-3.0. Self-hosted edition free forever.
-- **Extensible** — A first-class hook system — no forking required.
+## Requirements at a glance
 
-## How it works
+- PHP **8.2+** with the extensions `pdo_mysql`, `openssl`, `mbstring`, `ctype`, `curl`,
+  `fileinfo`, `dom`
+- **MySQL 8** or **MariaDB 10.6+**
+- One cron job (every minute)
 
-Plume manages brands, lists, and subscribers, lets you compose HTML campaigns, and hands them to a background worker that drips mail to your configured [email provider](/docs/email-providers/) within your rate limits. It captures opens and clicks on every provider, and — with Amazon SES — bounces and complaints too, auto-suppressing bad addresses to protect your reputation.
-
-```
-connect provider → import → compose → worker → track
-```
-
-## What you need
-
-- An email provider account — Amazon SES (cheapest at volume) or any SMTP provider; optional to start, since Plume ships with a log provider for local testing
-- A PostgreSQL 14+ database
-- Docker, or a host to run a single binary
-- A domain you can add DNS records to
-
-## Next steps
-
-Ready to install? The [Quickstart](/docs/quickstart/) gets you sending fast; [Installation](/docs/installation/) covers production deployment.
+Ready to install? Head to [Installation](/docs/installation/).

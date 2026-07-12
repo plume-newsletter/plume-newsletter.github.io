@@ -1,52 +1,57 @@
 ---
 title: Installation
-description: Run Plume with Docker or as a single static Go binary alongside PostgreSQL.
+description: Install Plume on shared hosting (cPanel) or a VPS in about five minutes.
 ---
 
-Plume ships as a single static Go binary with the web UI embedded. Run it with Docker, or drop the binary next to PostgreSQL.
+## Requirements
 
-## Docker (recommended)
+- PHP **8.2+** with the extensions `pdo_mysql`, `openssl`, `mbstring`, `ctype`, `curl`,
+  `fileinfo`, `dom`
+- **MySQL 8** or **MariaDB 10.6+**
+- Ability to add **one** cron job
 
-The compose file bundles Plume and Postgres with sensible defaults.
+## Shared hosting (cPanel)
 
-```yaml
-services:
-  plume:
-    image: ghcr.io/plume-newsletter/plume:latest
-    ports: ["8080:8080"]
-    environment:
-      PLUME_DATABASE_URL: postgres://plume:plume@db:5432/plume?sslmode=disable
-      PLUME_COOKIE_SECRET: change-me-to-at-least-32-bytes-long
-      PLUME_SECRET_KEY: 32-byte-key-exactly-0123456789ab
-      PLUME_ADMIN_EMAIL: you@example.com
-      PLUME_ADMIN_PASSWORD: change-me
-      PLUME_BASE_URL: http://localhost:8080
-    depends_on: [db]
-  db:
-    image: postgres:16
+1. Upload the zip to your host and extract it. Point your (sub)domain's document root at the
+   `public/` folder.
+2. Visit your domain in a browser — the installer opens automatically.
+3. Follow the 4 steps: **requirements** → **database** → **tables** → **admin account**.
+4. Add the cron line shown on the final screen (cPanel → Cron Jobs). See
+   [The cron job](/docs/cron/) for the exact line and what it powers.
+
+:::caution
+The web installer is **unauthenticated** until it completes. As soon as you extract the zip and
+visit your domain, finish all 4 steps immediately — don't leave the install page sitting there.
+It self-locks the moment you finish step 4 and can't be run again after that.
+:::
+
+## VPS / Docker
+
+Copy `.env.example` to `.env`, fill in your `DB_*` values, then run:
+
+```
+php artisan key:generate
+php artisan migrate --force
 ```
 
-## Single binary
+Create your admin account through the same web installer, or run the app behind the included
+Dockerfile. On a VPS, add the same one-minute cron for `php artisan schedule:run` (the Dockerfile
+handles this for you automatically).
 
-Prefer no Docker? Download a release binary and point it at a Postgres connection string. Configuration is by environment variable; running the binary starts the server, runs migrations, and launches the background workers.
+## After install
 
-```bash
-curl -L https://github.com/plume-newsletter/plume/releases/latest/download/plume-linux-amd64 -o plume
-chmod +x plume
-PLUME_DATABASE_URL=postgres://localhost/plume \
-PLUME_COOKIE_SECRET=change-me-to-at-least-32-bytes-long \
-PLUME_SECRET_KEY=32-byte-key-exactly-0123456789ab \
-  ./plume
-```
+- **Mail (required to send):** go to Settings → Mail and enter your SMTP or Amazon SES SMTP
+  credentials, then send a test. See [Sending email](/docs/email-sending/).
+- **AI copilot (optional):** Settings → AI — paste your own Anthropic API key to enable the
+  campaign copilot. Plume works fully without it.
+- **Signup forms:** each list has a hosted signup form and a copy-paste embed snippet for
+  double-opt-in subscriptions on any site — no API key needed.
 
-### Behind a reverse proxy
+## Troubleshooting
 
-Terminate TLS at nginx or Caddy and proxy to port 8080. Set `PLUME_BASE_URL` to your public HTTPS URL so tracking links and unsubscribe pages resolve correctly, and set `PLUME_SECURE_COOKIES=true` so session cookies are marked Secure.
-
-## Database
-
-Plume needs PostgreSQL 14 or newer. Migrations are embedded in the binary (goose) and run automatically at startup — there is no separate migrate step or command.
-
-## Upgrading
-
-Pull the new image (or binary) and restart. Migrations are forward-only and run on boot. Always check the [changelog](/docs/changelog/) for breaking notes before a major bump.
+- **500 error on first visit** — check that `storage/` and `bootstrap/cache/` are writable by
+  the web server.
+- **Emails aren't sending** — confirm the cron job is running (see [The cron job](/docs/cron/)),
+  then go to Settings → Mail and click Send test.
+- **Confirmation or campaign emails are delayed** — they queue and drain on the one-minute
+  scheduler cron. A missing or broken cron job stalls both.
