@@ -34,8 +34,14 @@ Add blocks from the toolbar and drag them (via the handle) into order:
 | Spacer | Adjustable vertical space |
 | HTML | Raw HTML for anything the other blocks don't cover |
 
-The right-hand pane shows a live preview as you edit. Output is sanitized, 600px-wide table HTML
-built to render consistently across email clients — not just modern browsers.
+Social and Columns blocks don't have their own edit form in the builder yet — they're filled in
+by the starter templates (or the AI copilot), and you can reorder or remove them like any other
+block.
+
+The right-hand pane shows a live preview as you edit. Output is 600px-wide table HTML built to
+render consistently across email clients — not just modern browsers. Content you enter in the
+text-based blocks is sanitized on render; the HTML block is the deliberate exception — it passes
+your markup through untouched, as an escape hatch for your own hand-written email code.
 
 Set the **subject line** and an optional **preheader** (the preview text shown next to the
 subject in most inboxes) at the top of the builder. If you've added your own Anthropic API key

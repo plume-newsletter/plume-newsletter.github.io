@@ -28,10 +28,11 @@ edit a subscriber directly, or remove one entirely.
 
 ### Custom fields
 
-Type a field name (e.g. "Company", "Plan") into any subscriber's edit form and it's created
-automatically the first time it's used — there's no separate field-management screen. Every
-subscriber shares the same set of available fields; a value is only stored where you've filled
-one in.
+Custom fields are created automatically by CSV import: any column that isn't `email`, `name`,
+or `subscribed_to_emails` becomes a field (e.g. a "Company" or "Plan" column) — there's no
+separate field-management screen. Once a field exists, it appears on every subscriber's edit
+form so you can fill in or change per-subscriber values by hand; a value is only stored where
+you've filled one in.
 
 ## Segments
 
