@@ -79,8 +79,8 @@ export const en = {
         body: 'Compose campaigns visually and start from one of 14 built-in templates.',
       },
       campaigns: {
-        title: 'Campaigns & scheduling',
-        body: 'Draft, preview, and schedule campaigns to send exactly when you want.',
+        title: 'Campaigns',
+        body: 'Draft, preview, and send campaigns to a list or segment — sending runs in the background with automatic retries.',
       },
       lists: {
         title: 'Lists, segments & custom fields',
