@@ -19,8 +19,8 @@ no background daemon, no build tools required on the server.
 - **Segments** — build audiences from status and list-membership rules (match all or any) with
   a live subscriber-count preview.
 - **Campaign builder** — a drag-and-drop block editor (headings, text, images, buttons, dividers,
-  spacers, and more) with a live email preview and a gallery of ready-made templates. Output is
-  sanitized, 600px-wide table HTML that renders correctly across email clients.
+  spacers, and more) with a live email preview and a gallery of ready-made templates. Text blocks
+  are sanitized on render; output is 600px-wide table HTML that works across email clients.
 - **Sending** — send to a list or a segment through your own SMTP or Amazon SES. Delivery runs
   off the cron in the background with automatic retries; campaigns lock after sending.
 - **Tracking & reports** — open and click tracking, per-campaign reports (open/click/unsubscribe

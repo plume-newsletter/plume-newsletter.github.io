@@ -17,7 +17,7 @@ shared-hosting friendly (one cron, no Redis/daemon).
 - Multi-brand support with a brand switcher; per-brand sender identity and full tenant isolation.
 - Lists and subscribers with custom fields, search/filter, and CSV import (including Ghost member exports).
 - Segments from status + list-membership rules (match all/any) with a live count preview.
-- Drag-and-drop campaign builder with a live email preview, a template gallery, and sanitized email-safe HTML output.
+- Drag-and-drop campaign builder with a live email preview, a template gallery, and email-safe 600px table HTML output (text blocks sanitized on render).
 - Sending to a list or segment via your own SMTP / Amazon SES, drained off the cron with automatic retries and post-send locking.
 - Open/click tracking, per-campaign reports (open/click/unsubscribe rates, top links), and dashboard performance tiles.
 - Public double-opt-in signup forms per list (hosted + embeddable, no API key), email confirmation, one-click unsubscribe (RFC 8058), and a resubscribe path.
