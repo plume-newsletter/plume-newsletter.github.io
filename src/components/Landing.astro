@@ -6,6 +6,10 @@ const { t } = Astro.props as { t: LandingStrings };
 const site = Astro.site?.href ?? '/';
 const docsBase = '/docs';
 const canonical = site;
+
+// The ONE place to edit once the CodeCanyon listing is live.
+const CODECANYON_URL = '';
+const DEMO_URL = 'https://demo.plumenewsletter.com';
 ---
 <!doctype html>
 <html lang="en">
@@ -115,12 +119,11 @@ const canonical = site;
         <span style="font-family:'JetBrains Mono Variable',monospace;font-size:.62rem;font-weight:600;color:var(--muted);border:1px solid var(--border);border-radius:5px;padding:2px 6px;letter-spacing:.02em;">{t.nav.badge}</span>
       </a>
       <div style="display:flex;align-items:center;gap:4px;flex-wrap:wrap;">
-        <a href="#why" style="text-decoration:none;color:var(--muted);font-size:.92rem;font-weight:500;padding:8px 12px;border-radius:8px;" style-hover="color:var(--fg);background:var(--surface-2);">{t.nav.why}</a>
         <a href="#features" style="text-decoration:none;color:var(--muted);font-size:.92rem;font-weight:500;padding:8px 12px;border-radius:8px;" style-hover="color:var(--fg);background:var(--surface-2);">{t.nav.features}</a>
         <a href="#how" style="text-decoration:none;color:var(--muted);font-size:.92rem;font-weight:500;padding:8px 12px;border-radius:8px;" style-hover="color:var(--fg);background:var(--surface-2);">{t.nav.how}</a>
         <a href="#pricing" style="text-decoration:none;color:var(--muted);font-size:.92rem;font-weight:500;padding:8px 12px;border-radius:8px;" style-hover="color:var(--fg);background:var(--surface-2);">{t.nav.pricing}</a>
         <a href={`${docsBase}/`} style="text-decoration:none;color:var(--muted);font-size:.92rem;font-weight:500;padding:8px 12px;border-radius:8px;" style-hover="color:var(--fg);background:var(--surface-2);">{t.nav.docs}</a>
-        <a href="#plans" style="text-decoration:none;color:var(--muted);font-size:.92rem;font-weight:500;padding:8px 12px;border-radius:8px;" style-hover="color:var(--fg);background:var(--surface-2);">{t.nav.cloud}</a>
+        <a href={DEMO_URL} style="text-decoration:none;color:var(--muted);font-size:.92rem;font-weight:500;padding:8px 12px;border-radius:8px;" style-hover="color:var(--fg);background:var(--surface-2);">{t.nav.demo}</a>
       </div>
       <div style="display:flex;align-items:center;gap:10px;">
         <button id="theme-toggle" aria-label={t.nav.themeToggleAria} style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:9px;border:1px solid var(--border);background:var(--surface);color:var(--fg);cursor:pointer;" style-hover="background:var(--surface-2);border-color:var(--border-strong);" style-focus="outline:2px solid var(--primary);outline-offset:2px;">
@@ -131,11 +134,9 @@ const canonical = site;
             <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13.5A8 8 0 1 1 10.5 4a6.2 6.2 0 0 0 9.5 9.5Z"/></svg>
           </div>
         </button>
-        <a href="https://github.com/plume-newsletter/plume" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--fg);font-size:.92rem;font-weight:600;padding:9px 14px;border-radius:9px;border:1px solid var(--border);background:var(--surface);" style-hover="background:var(--surface-2);border-color:var(--border-strong);" style-focus="outline:2px solid var(--primary);outline-offset:2px;">
-          <svg width="17" height="17" viewBox="0 0 19 19" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M9.356 1.85C5.05 1.85 1.57 5.356 1.57 9.694a7.84 7.84 0 0 0 5.324 7.44c.387.079.528-.168.528-.376 0-.182-.013-.805-.013-1.454-2.165.467-2.616-.935-2.616-.935-.349-.91-.864-1.143-.864-1.143-.71-.48.051-.48.051-.48.787.051 1.2.805 1.2.805.695 1.194 1.817.857 2.268.649.064-.507.27-.857.49-1.052-1.728-.182-3.545-.857-3.545-3.87 0-.857.31-1.558.8-2.104-.078-.195-.349-1 .077-2.078 0 0 .657-.208 2.14.805a7.5 7.5 0 0 1 1.946-.26c.657 0 1.328.092 1.946.26 1.483-1.013 2.14-.805 2.14-.805.426 1.078.155 1.883.078 2.078.502.546.799 1.247.799 2.104 0 3.013-1.818 3.675-3.558 3.87.284.247.528.714.528 1.454 0 1.052-.012 1.896-.012 2.156 0 .208.142.455.528.377a7.84 7.84 0 0 0 5.324-7.441c.013-4.338-3.48-7.844-7.773-7.844" clip-rule="evenodd"/></svg>
-          <span style="font-family:'JetBrains Mono Variable',monospace;font-size:.82rem;"><span id="gh-stars">{t.nav.githubStarsFallback}</span></span>
-        </a>
-        <a href="#quickstart" style="display:inline-flex;align-items:center;text-decoration:none;color:#fff;font-size:.92rem;font-weight:600;padding:10px 16px;border-radius:9px;background:var(--amber);box-shadow:var(--shadow-sm);" style-hover="filter:brightness(.94);" style-focus="outline:2px solid var(--amber);outline-offset:2px;">{t.nav.getStarted}</a>
+        {CODECANYON_URL
+          ? <a href={CODECANYON_URL} style="display:inline-flex;align-items:center;text-decoration:none;color:#fff;font-size:.92rem;font-weight:600;padding:10px 16px;border-radius:9px;background:var(--amber);box-shadow:var(--shadow-sm);" style-hover="filter:brightness(.94);" style-focus="outline:2px solid var(--amber);outline-offset:2px;">{t.nav.ctaBuy}</a>
+          : <span style="display:inline-flex;align-items:center;color:var(--muted);font-size:.92rem;font-weight:600;padding:10px 16px;border-radius:9px;background:var(--surface-2);border:1px solid var(--border);cursor:not-allowed;">{t.nav.ctaComingSoon}</span>}
       </div>
     </nav>
   </header>
@@ -150,19 +151,21 @@ const canonical = site;
           {t.hero.badge}
         </span>
         <h1 style="font-size:clamp(2.3rem,5.2vw,3.7rem);line-height:1.04;letter-spacing:-.025em;font-weight:800;margin:20px 0 0;text-wrap:balance;">
-          {t.hero.headlineBefore} <span style="color:var(--primary);">{t.hero.headlineHighlight}</span> {t.hero.headlineAfter}
+          {t.hero.headlineBefore} <span style="color:var(--primary);">{t.hero.headlineHighlight}</span>
         </h1>
         <p style="font-size:clamp(1.05rem,2vw,1.22rem);color:var(--muted);margin:18px 0 0;max-width:34ch;text-wrap:pretty;">
           {t.hero.subhead}
         </p>
         <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:28px;">
-          <a href="#quickstart" style="display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:#fff;font-size:1rem;font-weight:600;padding:13px 22px;border-radius:10px;background:var(--amber);box-shadow:var(--shadow);" style-hover="filter:brightness(.94);transform:translateY(-1px);" style-focus="outline:2px solid var(--amber);outline-offset:2px;">
-            {t.hero.ctaPrimary}
-            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
-          </a>
-          <a href="https://github.com/plume-newsletter/plume" style="display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:var(--fg);font-size:1rem;font-weight:600;padding:13px 20px;border-radius:10px;border:1px solid var(--border-strong);background:var(--surface);" style-hover="background:var(--surface-2);" style-focus="outline:2px solid var(--primary);outline-offset:2px;">
-            <svg width="18" height="18" viewBox="0 0 19 19" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M9.356 1.85C5.05 1.85 1.57 5.356 1.57 9.694a7.84 7.84 0 0 0 5.324 7.44c.387.079.528-.168.528-.376 0-.182-.013-.805-.013-1.454-2.165.467-2.616-.935-2.616-.935-.349-.91-.864-1.143-.864-1.143-.71-.48.051-.48.051-.48.787.051 1.2.805 1.2.805.695 1.194 1.817.857 2.268.649.064-.507.27-.857.49-1.052-1.728-.182-3.545-.857-3.545-3.87 0-.857.31-1.558.8-2.104-.078-.195-.349-1 .077-2.078 0 0 .657-.208 2.14.805a7.5 7.5 0 0 1 1.946-.26c.657 0 1.328.092 1.946.26 1.483-1.013 2.14-.805 2.14-.805.426 1.078.155 1.883.078 2.078.502.546.799 1.247.799 2.104 0 3.013-1.818 3.675-3.558 3.87.284.247.528.714.528 1.454 0 1.052-.012 1.896-.012 2.156 0 .208.142.455.528.377a7.84 7.84 0 0 0 5.324-7.441c.013-4.338-3.48-7.844-7.773-7.844" clip-rule="evenodd"/></svg>
-            {t.hero.ctaSecondary}
+          {CODECANYON_URL
+            ? <a href={CODECANYON_URL} style="display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:#fff;font-size:1rem;font-weight:600;padding:13px 22px;border-radius:10px;background:var(--amber);box-shadow:var(--shadow);" style-hover="filter:brightness(.94);transform:translateY(-1px);" style-focus="outline:2px solid var(--amber);outline-offset:2px;">
+                {t.nav.ctaBuy}
+                <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+              </a>
+            : <span style="display:inline-flex;align-items:center;gap:9px;color:var(--muted);font-size:1rem;font-weight:600;padding:13px 22px;border-radius:10px;background:var(--surface-2);border:1px solid var(--border);cursor:not-allowed;">{t.nav.ctaComingSoon}</span>}
+          <a href={DEMO_URL} style="display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:var(--fg);font-size:1rem;font-weight:600;padding:13px 20px;border-radius:10px;border:1px solid var(--border-strong);background:var(--surface);" style-hover="background:var(--surface-2);" style-focus="outline:2px solid var(--primary);outline-offset:2px;">
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+            {t.hero.ctaDemo}
           </a>
         </div>
         <div style="display:inline-flex;align-items:center;gap:12px;margin-top:24px;font-family:'JetBrains Mono Variable',monospace;font-size:.9rem;background:var(--surface);border:1px solid var(--border);border-radius:10px;padding:10px 14px;box-shadow:var(--shadow-sm);flex-wrap:wrap;">
@@ -230,11 +233,11 @@ const canonical = site;
     <section aria-label={t.trust.ariaLabel} style="border-top:1px solid var(--border);border-bottom:1px solid var(--border);background:var(--surface);">
       <div style="max-width:1180px;margin:0 auto;padding:22px 24px;display:flex;align-items:center;gap:clamp(16px,4vw,42px);flex-wrap:wrap;justify-content:center;">
         <span style="font-size:.8rem;color:var(--muted);text-transform:uppercase;letter-spacing:.08em;font-weight:600;">{t.trust.label}</span>
-        <span style="font-family:'JetBrains Mono Variable',monospace;font-weight:600;color:var(--fg);opacity:.85;">{t.trust.go}</span>
-        <span style="font-family:'JetBrains Mono Variable',monospace;font-weight:600;color:var(--fg);opacity:.85;">{t.trust.postgres}</span>
-        <span style="font-family:'JetBrains Mono Variable',monospace;font-weight:600;color:var(--fg);opacity:.85;">{t.trust.react}</span>
-        <span style="font-family:'JetBrains Mono Variable',monospace;font-weight:600;color:var(--fg);opacity:.85;">{t.trust.ses}</span>
-        <span style="font-family:'JetBrains Mono Variable',monospace;font-weight:600;color:var(--fg);opacity:.85;">{t.trust.stack}</span>
+        <span style="font-family:'JetBrains Mono Variable',monospace;font-weight:600;color:var(--fg);opacity:.85;">{t.trust.item1}</span>
+        <span style="font-family:'JetBrains Mono Variable',monospace;font-weight:600;color:var(--fg);opacity:.85;">{t.trust.item2}</span>
+        <span style="font-family:'JetBrains Mono Variable',monospace;font-weight:600;color:var(--fg);opacity:.85;">{t.trust.item3}</span>
+        <span style="font-family:'JetBrains Mono Variable',monospace;font-weight:600;color:var(--fg);opacity:.85;">{t.trust.item4}</span>
+        <span style="color:var(--muted);font-size:.88rem;">{t.trust.note}</span>
       </div>
     </section>
 
@@ -254,22 +257,22 @@ const canonical = site;
           <p style="color:var(--muted);font-size:.94rem;margin:0;">{t.why.card1Body}</p>
         </div>
         <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px;box-shadow:var(--shadow-sm);">
-          <div style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:11px;background:var(--amber-weak);color:var(--amber);margin-bottom:16px;">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5c0-1.1 1.1-1.8 2.5-1.8s2.5.7 2.5 1.8c0 2.4-5 1.6-5 4 0 1.1 1.1 1.8 2.5 1.8s2.5-.7 2.5-1.8"/></svg>
+          <div style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:11px;background:var(--primary-weak);color:var(--primary);margin-bottom:16px;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg>
           </div>
           <h3 style="font-size:1.08rem;font-weight:700;margin:0 0 6px;">{t.why.card2Title}</h3>
-          <p style="color:var(--muted);font-size:.94rem;margin:0;">{t.why.card2BodyPre} <span style="font-family:'JetBrains Mono Variable',monospace;color:var(--fg);">{t.why.card2BodyPrice}</span> {t.why.card2BodyPost}</p>
+          <p style="color:var(--muted);font-size:.94rem;margin:0;">{t.why.card2Body}</p>
         </div>
         <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px;box-shadow:var(--shadow-sm);">
-          <div style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:11px;background:var(--success-weak);color:var(--success);margin-bottom:16px;">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
+          <div style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:11px;background:var(--amber-weak);color:var(--amber);margin-bottom:16px;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M12 7v10M9.5 9.5c0-1.1 1.1-1.8 2.5-1.8s2.5.7 2.5 1.8c0 2.4-5 1.6-5 4 0 1.1 1.1 1.8 2.5 1.8s2.5-.7 2.5-1.8"/></svg>
           </div>
           <h3 style="font-size:1.08rem;font-weight:700;margin:0 0 6px;">{t.why.card3Title}</h3>
           <p style="color:var(--muted);font-size:.94rem;margin:0;">{t.why.card3Body}</p>
         </div>
         <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:24px;box-shadow:var(--shadow-sm);">
-          <div style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:11px;background:var(--primary-weak);color:var(--primary);margin-bottom:16px;">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg>
+          <div style="display:inline-flex;align-items:center;justify-content:center;width:42px;height:42px;border-radius:11px;background:var(--success-weak);color:var(--success);margin-bottom:16px;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>
           </div>
           <h3 style="font-size:1.08rem;font-weight:700;margin:0 0 6px;">{t.why.card4Title}</h3>
           <p style="color:var(--muted);font-size:.94rem;margin:0;">{t.why.card4Body}</p>
@@ -286,9 +289,14 @@ const canonical = site;
         </div>
         <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(270px,1fr));gap:1px;background:var(--border);border:1px solid var(--border);border-radius:16px;overflow:hidden;margin-top:40px;">
           <div style="background:var(--surface);padding:24px;">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.9 7.9"/></svg>
-            <h3 style="font-size:1.02rem;font-weight:700;margin:14px 0 6px;">{t.features.items.brands.title}</h3>
-            <p style="color:var(--muted);font-size:.92rem;margin:0;">{t.features.items.brands.body}</p>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
+            <h3 style="font-size:1.02rem;font-weight:700;margin:14px 0 6px;">{t.features.items.builder.title}</h3>
+            <p style="color:var(--muted);font-size:.92rem;margin:0;">{t.features.items.builder.body}</p>
+          </div>
+          <div style="background:var(--surface);padding:24px;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="18" rx="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+            <h3 style="font-size:1.02rem;font-weight:700;margin:14px 0 6px;">{t.features.items.campaigns.title}</h3>
+            <p style="color:var(--muted);font-size:.92rem;margin:0;">{t.features.items.campaigns.body}</p>
           </div>
           <div style="background:var(--surface);padding:24px;">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="8" y1="6" x2="21" y2="6"/><line x1="8" y1="12" x2="21" y2="12"/><line x1="8" y1="18" x2="21" y2="18"/><path d="M3 6h.01M3 12h.01M3 18h.01"/></svg>
@@ -296,14 +304,14 @@ const canonical = site;
             <p style="color:var(--muted);font-size:.92rem;margin:0;">{t.features.items.lists.body}</p>
           </div>
           <div style="background:var(--surface);padding:24px;">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M11 4h10M11 9h6M11 15h10M11 20h6"/><path d="m3 5 2 2 3-3M3 16l2 2 3-3"/></svg>
-            <h3 style="font-size:1.02rem;font-weight:700;margin:14px 0 6px;">{t.features.items.composer.title}</h3>
-            <p style="color:var(--muted);font-size:.92rem;margin:0;">{t.features.items.composer.body}</p>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15V6a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v9"/><path d="M3 15h18"/><path d="m12 12 3 3-3 3"/></svg>
+            <h3 style="font-size:1.02rem;font-weight:700;margin:14px 0 6px;">{t.features.items.importing.title}</h3>
+            <p style="color:var(--muted);font-size:.92rem;margin:0;">{t.features.items.importing.body}</p>
           </div>
           <div style="background:var(--surface);padding:24px;">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
-            <h3 style="font-size:1.02rem;font-weight:700;margin:14px 0 6px;">{t.features.items.byoProvider.title}</h3>
-            <p style="color:var(--muted);font-size:.92rem;margin:0;">{t.features.items.byoProvider.body}</p>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="17 1 21 5 17 9"/><path d="M3 11V9a4 4 0 0 1 4-4h14"/><polyline points="7 23 3 19 7 15"/><path d="M21 13v2a4 4 0 0 1-4 4H3"/></svg>
+            <h3 style="font-size:1.02rem;font-weight:700;margin:14px 0 6px;">{t.features.items.automations.title}</h3>
+            <p style="color:var(--muted);font-size:.92rem;margin:0;">{t.features.items.automations.body}</p>
           </div>
           <div style="background:var(--surface);padding:24px;">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><line x1="6" y1="20" x2="6" y2="13"/><line x1="12" y1="20" x2="12" y2="8"/><line x1="18" y1="20" x2="18" y2="4"/></svg>
@@ -311,49 +319,34 @@ const canonical = site;
             <p style="color:var(--muted);font-size:.92rem;margin:0;">{t.features.items.tracking.body}</p>
           </div>
           <div style="background:var(--surface);padding:24px;">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2 4 5v6c0 5 3.5 8.5 8 11 4.5-2.5 8-6 8-11V5l-8-3Z"/><path d="m9 12 2 2 4-4"/></svg>
-            <h3 style="font-size:1.02rem;font-weight:700;margin:14px 0 6px;">{t.features.items.suppression.title}</h3>
-            <p style="color:var(--muted);font-size:.92rem;margin:0;">{t.features.items.suppression.body}</p>
-          </div>
-          <div style="background:var(--surface);padding:24px;">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7L12 19"/></svg>
-            <h3 style="font-size:1.02rem;font-weight:700;margin:14px 0 6px;">{t.features.items.unsubscribe.title}</h3>
-            <p style="color:var(--muted);font-size:.92rem;margin:0;">{t.features.items.unsubscribe.body}</p>
-          </div>
-          <div style="background:var(--surface);padding:24px;">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg>
-            <h3 style="font-size:1.02rem;font-weight:700;margin:14px 0 6px;">{t.features.items.reports.title}</h3>
-            <p style="color:var(--muted);font-size:.92rem;margin:0;">{t.features.items.reports.body}</p>
-          </div>
-          <div style="background:var(--surface);padding:24px;">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 2v6M15 2v6M9 8h6a3 3 0 0 1 3 3v1a4 4 0 0 1-4 4h-2a4 4 0 0 1-4-4v-1a3 3 0 0 1 3-3Z"/><path d="M12 16v6"/></svg>
-            <h3 style="font-size:1.02rem;font-weight:700;margin:14px 0 6px;">{t.features.items.hooks.title}</h3>
-            <p style="color:var(--muted);font-size:.92rem;margin:0;">{t.features.items.hooks.body}</p>
-          </div>
-          <div style="background:var(--surface);padding:24px;">
             <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 3v3M12 18v3M5.6 5.6l2.1 2.1M16.3 16.3l2.1 2.1M3 12h3M18 12h3M5.6 18.4l2.1-2.1M16.3 7.7l2.1-2.1"/><circle cx="12" cy="12" r="3"/></svg>
             <h3 style="font-size:1.02rem;font-weight:700;margin:14px 0 6px;">{t.features.items.copilot.title}</h3>
             <p style="color:var(--muted);font-size:.92rem;margin:0;">{t.features.items.copilot.body}</p>
           </div>
           <div style="background:var(--surface);padding:24px;">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect width="8" height="8" x="3" y="3" rx="2"/><path d="M7 11v4a2 2 0 0 0 2 2h4"/><rect width="8" height="8" x="13" y="13" rx="2"/></svg>
-            <h3 style="font-size:1.02rem;font-weight:700;margin:14px 0 6px;">{t.features.items.n8n.title}</h3>
-            <p style="color:var(--muted);font-size:.92rem;margin:0;">{t.features.items.n8n.body}</p>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 13a5 5 0 0 0 7.5.5l3-3a5 5 0 0 0-7-7l-1.5 1.5"/><path d="M14 11a5 5 0 0 0-7.5-.5l-3 3a5 5 0 0 0 7 7L12 19"/></svg>
+            <h3 style="font-size:1.02rem;font-weight:700;margin:14px 0 6px;">{t.features.items.signupForms.title}</h3>
+            <p style="color:var(--muted);font-size:.92rem;margin:0;">{t.features.items.signupForms.body}</p>
           </div>
           <div style="background:var(--surface);padding:24px;">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 11a9 9 0 0 1 9 9"/><path d="M4 4a16 16 0 0 1 16 16"/><circle cx="5" cy="19" r="1"/></svg>
-            <h3 style="font-size:1.02rem;font-weight:700;margin:14px 0 6px;">{t.features.items.rss.title}</h3>
-            <p style="color:var(--muted);font-size:.92rem;margin:0;">{t.features.items.rss.body}</p>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/></svg>
+            <h3 style="font-size:1.02rem;font-weight:700;margin:14px 0 6px;">{t.features.items.smtpSes.title}</h3>
+            <p style="color:var(--muted);font-size:.92rem;margin:0;">{t.features.items.smtpSes.body}</p>
           </div>
           <div style="background:var(--surface);padding:24px;">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15V6a2 2 0 0 0-2-2H9a2 2 0 0 0-2 2v9"/><path d="M3 15h18"/><path d="m12 12 3 3-3 3"/></svg>
-            <h3 style="font-size:1.02rem;font-weight:700;margin:14px 0 6px;">{t.features.items.ghost.title}</h3>
-            <p style="color:var(--muted);font-size:.92rem;margin:0;">{t.features.items.ghost.body}</p>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="4"/><path d="M16 8v5a3 3 0 0 0 6 0v-1a10 10 0 1 0-3.9 7.9"/></svg>
+            <h3 style="font-size:1.02rem;font-weight:700;margin:14px 0 6px;">{t.features.items.multiBrand.title}</h3>
+            <p style="color:var(--muted);font-size:.92rem;margin:0;">{t.features.items.multiBrand.body}</p>
           </div>
           <div style="background:var(--surface);padding:24px;">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 4h16v12H4z"/><path d="M2 20h20"/><path d="M9 8h6M9 12h4"/></svg>
-            <h3 style="font-size:1.02rem;font-weight:700;margin:14px 0 6px;">{t.features.items.wordpress.title}</h3>
-            <p style="color:var(--muted);font-size:.92rem;margin:0;">{t.features.items.wordpress.body}</p>
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 13.5A8 8 0 1 1 10.5 4a6.2 6.2 0 0 0 9.5 9.5Z"/></svg>
+            <h3 style="font-size:1.02rem;font-weight:700;margin:14px 0 6px;">{t.features.items.darkMode.title}</h3>
+            <p style="color:var(--muted);font-size:.92rem;margin:0;">{t.features.items.darkMode.body}</p>
+          </div>
+          <div style="background:var(--surface);padding:24px;">
+            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="var(--primary)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <h3 style="font-size:1.02rem;font-weight:700;margin:14px 0 6px;">{t.features.items.installer.title}</h3>
+            <p style="color:var(--muted);font-size:.92rem;margin:0;">{t.features.items.installer.body}</p>
           </div>
         </div>
       </div>
@@ -368,27 +361,35 @@ const canonical = site;
       <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(190px,1fr));gap:16px;margin-top:40px;">
         <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px;box-shadow:var(--shadow-sm);">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
-            <span style="font-family:'JetBrains Mono Variable',monospace;font-weight:600;font-size:.92rem;color:var(--primary);">{t.how.steps.connect.number}</span>
+            <span style="font-family:'JetBrains Mono Variable',monospace;font-weight:600;font-size:.92rem;color:var(--primary);">{t.how.steps.buy.number}</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="1" y="4" width="22" height="16" rx="2"/><line x1="1" y1="10" x2="23" y2="10"/></svg>
+          </div>
+          <h3 style="font-size:1rem;font-weight:700;margin:0 0 6px;">{t.how.steps.buy.title}</h3>
+          <p style="color:var(--muted);font-size:.9rem;margin:0;">{t.how.steps.buy.body}</p>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px;box-shadow:var(--shadow-sm);">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+            <span style="font-family:'JetBrains Mono Variable',monospace;font-weight:600;font-size:.92rem;color:var(--primary);">{t.how.steps.upload.number}</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="17 8 12 3 7 8"/><line x1="12" y1="3" x2="12" y2="15"/></svg>
+          </div>
+          <h3 style="font-size:1rem;font-weight:700;margin:0 0 6px;">{t.how.steps.upload.title}</h3>
+          <p style="color:var(--muted);font-size:.9rem;margin:0;">{t.how.steps.upload.body}</p>
+        </div>
+        <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px;box-shadow:var(--shadow-sm);">
+          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
+            <span style="font-family:'JetBrains Mono Variable',monospace;font-weight:600;font-size:.92rem;color:var(--primary);">{t.how.steps.install.number}</span>
             <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12.55a11 11 0 0 1 14.08 0M1.42 9a16 16 0 0 1 21.16 0M8.53 16.11a6 6 0 0 1 6.95 0M12 20h.01"/></svg>
           </div>
-          <h3 style="font-size:1rem;font-weight:700;margin:0 0 6px;">{t.how.steps.connect.title}</h3>
-          <p style="color:var(--muted);font-size:.9rem;margin:0;">{t.how.steps.connect.body}</p>
+          <h3 style="font-size:1rem;font-weight:700;margin:0 0 6px;">{t.how.steps.install.title}</h3>
+          <p style="color:var(--muted);font-size:.9rem;margin:0;">{t.how.steps.install.body}</p>
         </div>
         <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px;box-shadow:var(--shadow-sm);">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
-            <span style="font-family:'JetBrains Mono Variable',monospace;font-weight:600;font-size:.92rem;color:var(--primary);">{t.how.steps.import.number}</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><polyline points="7 10 12 15 17 10"/><line x1="12" y1="15" x2="12" y2="3"/></svg>
+            <span style="font-family:'JetBrains Mono Variable',monospace;font-weight:600;font-size:.92rem;color:var(--primary);">{t.how.steps.cron.number}</span>
+            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="10"/><polyline points="12 6 12 12 16 14"/></svg>
           </div>
-          <h3 style="font-size:1rem;font-weight:700;margin:0 0 6px;">{t.how.steps.import.title}</h3>
-          <p style="color:var(--muted);font-size:.9rem;margin:0;">{t.how.steps.import.body}</p>
-        </div>
-        <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px;box-shadow:var(--shadow-sm);">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
-            <span style="font-family:'JetBrains Mono Variable',monospace;font-weight:600;font-size:.92rem;color:var(--primary);">{t.how.steps.compose.number}</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 20h9"/><path d="M16.5 3.5a2.12 2.12 0 0 1 3 3L7 19l-4 1 1-4Z"/></svg>
-          </div>
-          <h3 style="font-size:1rem;font-weight:700;margin:0 0 6px;">{t.how.steps.compose.title}</h3>
-          <p style="color:var(--muted);font-size:.9rem;margin:0;">{t.how.steps.compose.body}</p>
+          <h3 style="font-size:1rem;font-weight:700;margin:0 0 6px;">{t.how.steps.cron.title}</h3>
+          <p style="color:var(--muted);font-size:.9rem;margin:0;">{t.how.steps.cron.body}</p>
         </div>
         <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px;box-shadow:var(--shadow-sm);">
           <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
@@ -397,14 +398,6 @@ const canonical = site;
           </div>
           <h3 style="font-size:1rem;font-weight:700;margin:0 0 6px;">{t.how.steps.send.title}</h3>
           <p style="color:var(--muted);font-size:.9rem;margin:0;">{t.how.steps.send.body}</p>
-        </div>
-        <div style="background:var(--surface);border:1px solid var(--border);border-radius:14px;padding:22px;box-shadow:var(--shadow-sm);">
-          <div style="display:flex;align-items:center;justify-content:space-between;margin-bottom:14px;">
-            <span style="font-family:'JetBrains Mono Variable',monospace;font-weight:600;font-size:.92rem;color:var(--primary);">{t.how.steps.track.number}</span>
-            <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--muted)" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 3v18h18"/><path d="m7 14 4-4 3 3 5-5"/></svg>
-          </div>
-          <h3 style="font-size:1rem;font-weight:700;margin:0 0 6px;">{t.how.steps.track.title}</h3>
-          <p style="color:var(--muted);font-size:.9rem;margin:0;">{t.how.steps.track.body}</p>
         </div>
       </div>
     </section>
@@ -447,85 +440,38 @@ const canonical = site;
       </div>
     </section>
 
-    <!-- ===================== PLANS ===================== -->
+    <!-- ===================== PLANS ("What's included") ===================== -->
     <section id="plans" style="max-width:1180px;margin:0 auto;padding:clamp(56px,9vw,104px) 24px;">
       <div style="max-width:640px;margin:0 auto;text-align:center;">
-        <span style="font-size:.82rem;font-weight:600;color:var(--amber);text-transform:uppercase;letter-spacing:.07em;">{t.cloud.eyebrow}</span>
-        <h2 style="font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:800;letter-spacing:-.02em;margin:12px 0 0;line-height:1.1;text-wrap:balance;">{t.cloud.heading}</h2>
-        <p style="color:var(--muted);font-size:1.08rem;margin:14px 0 0;text-wrap:pretty;">{t.cloud.body}</p>
+        <span style="font-size:.82rem;font-weight:600;color:var(--amber);text-transform:uppercase;letter-spacing:.07em;">{t.plans.eyebrow}</span>
+        <h2 style="font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:800;letter-spacing:-.02em;margin:12px 0 0;line-height:1.1;text-wrap:balance;">{t.plans.heading}</h2>
+        <p style="color:var(--muted);font-size:1.08rem;margin:14px 0 0;text-wrap:pretty;">{t.plans.body}</p>
       </div>
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:20px;margin-top:44px;max-width:880px;margin-left:auto;margin-right:auto;align-items:start;">
-        <!-- Self-hosted (featured) -->
-        <div style="position:relative;background:var(--surface);border:2px solid var(--primary);border-radius:18px;padding:30px;box-shadow:var(--shadow-lg);">
-          <span style="position:absolute;top:-12px;left:30px;font-size:.72rem;font-weight:700;color:#fff;background:var(--primary);border-radius:999px;padding:5px 12px;letter-spacing:.02em;">{t.cloud.selfHosted.badge}</span>
+      <div style="max-width:520px;margin:44px auto 0;">
+        <div style="position:relative;background:var(--surface);border:2px solid var(--primary);border-radius:18px;padding:34px;box-shadow:var(--shadow-lg);">
+          <span style="position:absolute;top:-12px;left:34px;font-size:.72rem;font-weight:700;color:#fff;background:var(--primary);border-radius:999px;padding:5px 12px;letter-spacing:.02em;">{t.plans.badge}</span>
           <div style="display:flex;align-items:center;gap:10px;">
-            <span style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:10px;background:var(--primary-weak);color:var(--primary);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="7" rx="2"/><rect x="3" y="13" width="18" height="7" rx="2"/><path d="M7 7.5h.01M7 16.5h.01"/></svg></span>
-            <h3 style="font-size:1.25rem;font-weight:700;margin:0;">{t.cloud.selfHosted.title}</h3>
+            <span style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:10px;background:var(--primary-weak);color:var(--primary);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/><path d="M17.5 15H9"/></svg></span>
+            <h3 style="font-size:1.25rem;font-weight:700;margin:0;">{t.plans.cardTitle}</h3>
           </div>
-          <div style="display:flex;align-items:baseline;gap:8px;margin:20px 0 4px;"><span style="font-size:2.6rem;font-weight:800;letter-spacing:-.02em;">{t.cloud.selfHosted.priceValue}</span><span style="color:var(--muted);font-size:.95rem;">{t.cloud.selfHosted.priceUnit}</span></div>
-          <p style="color:var(--muted);font-size:.9rem;margin:0 0 20px;">{t.cloud.selfHosted.body}</p>
-          <a href="#quickstart" style="display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;color:#fff;font-weight:600;padding:12px;border-radius:10px;background:var(--primary);box-shadow:var(--shadow-sm);margin-bottom:22px;" style-hover="background:var(--primary-hover);" style-focus="outline:2px solid var(--primary);outline-offset:2px;">{t.cloud.selfHosted.cta}</a>
-          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:11px;">
-            <li style="display:flex;gap:10px;align-items:flex-start;font-size:.92rem;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><polyline points="20 6 9 17 4 12"/></svg>{t.cloud.selfHosted.features[0]}</li>
-            <li style="display:flex;gap:10px;align-items:flex-start;font-size:.92rem;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><polyline points="20 6 9 17 4 12"/></svg>{t.cloud.selfHosted.features[1]}</li>
-            <li style="display:flex;gap:10px;align-items:flex-start;font-size:.92rem;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><polyline points="20 6 9 17 4 12"/></svg>{t.cloud.selfHosted.features[2]}</li>
-            <li style="display:flex;gap:10px;align-items:flex-start;font-size:.92rem;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><polyline points="20 6 9 17 4 12"/></svg>{t.cloud.selfHosted.features[3]}</li>
+          <p style="color:var(--muted);font-size:.95rem;margin:18px 0 22px;">{t.plans.cardBody}</p>
+          <ul style="list-style:none;padding:0;margin:0 0 26px;display:flex;flex-direction:column;gap:11px;">
+            <li style="display:flex;gap:10px;align-items:flex-start;font-size:.92rem;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><polyline points="20 6 9 17 4 12"/></svg>{t.plans.features[0]}</li>
+            <li style="display:flex;gap:10px;align-items:flex-start;font-size:.92rem;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><polyline points="20 6 9 17 4 12"/></svg>{t.plans.features[1]}</li>
+            <li style="display:flex;gap:10px;align-items:flex-start;font-size:.92rem;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><polyline points="20 6 9 17 4 12"/></svg>{t.plans.features[2]}</li>
+            <li style="display:flex;gap:10px;align-items:flex-start;font-size:.92rem;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><polyline points="20 6 9 17 4 12"/></svg>{t.plans.features[3]}</li>
+            <li style="display:flex;gap:10px;align-items:flex-start;font-size:.92rem;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><polyline points="20 6 9 17 4 12"/></svg>{t.plans.features[4]}</li>
+            <li style="display:flex;gap:10px;align-items:flex-start;font-size:.92rem;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--success)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><polyline points="20 6 9 17 4 12"/></svg>{t.plans.features[5]}</li>
           </ul>
-        </div>
-        <!-- Cloud (managed) -->
-        <div style="background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:30px;box-shadow:var(--shadow-sm);">
-          <div style="display:flex;align-items:center;gap:10px;">
-            <span style="display:inline-flex;align-items:center;justify-content:center;width:38px;height:38px;border-radius:10px;background:var(--amber-weak);color:var(--amber);"><svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17.5 19a4.5 4.5 0 0 0 .5-8.97A6 6 0 0 0 6.3 9.5 4 4 0 0 0 7 17.5"/></svg></span>
-            <h3 style="font-size:1.25rem;font-weight:700;margin:0;">{t.cloud.plumeCloud.title}</h3>
-            <span style="margin-left:auto;font-size:.66rem;font-weight:700;color:var(--muted);background:var(--surface-2);border:1px solid var(--border);border-radius:6px;padding:3px 7px;letter-spacing:.02em;">{t.cloud.plumeCloud.badge}</span>
+          <div style="display:flex;gap:10px;flex-wrap:wrap;">
+            {CODECANYON_URL
+              ? <a href={CODECANYON_URL} style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;color:#fff;font-weight:600;padding:12px;border-radius:10px;background:var(--amber);box-shadow:var(--shadow-sm);" style-hover="filter:brightness(.94);" style-focus="outline:2px solid var(--amber);outline-offset:2px;">{t.nav.ctaBuy}</a>
+              : <span style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;color:var(--muted);font-weight:600;padding:12px;border-radius:10px;background:var(--surface-2);border:1px solid var(--border);cursor:not-allowed;">{t.nav.ctaComingSoon}</span>}
+            <a href={DEMO_URL} style="flex:1;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;color:var(--fg);font-weight:600;padding:12px;border-radius:10px;border:1px solid var(--border-strong);background:var(--surface);" style-hover="background:var(--surface-2);" style-focus="outline:2px solid var(--primary);outline-offset:2px;">{t.hero.ctaDemo}</a>
           </div>
-          <div style="display:flex;align-items:baseline;gap:8px;margin:20px 0 4px;"><span style="font-size:2.6rem;font-weight:800;letter-spacing:-.02em;">{t.cloud.plumeCloud.priceValue}</span><span style="color:var(--muted);font-size:.95rem;">{t.cloud.plumeCloud.priceUnit}</span></div>
-          <p style="color:var(--muted);font-size:.9rem;margin:0 0 20px;">{t.cloud.plumeCloud.body}</p>
-          <a href="#cloud-waitlist" style="display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none;color:var(--fg);font-weight:600;padding:12px;border-radius:10px;border:1px solid var(--border-strong);background:var(--surface);margin-bottom:22px;" style-hover="background:var(--surface-2);" style-focus="outline:2px solid var(--primary);outline-offset:2px;">{t.waitlist.joinCta}</a>
-          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:11px;">
-            <li style="display:flex;gap:10px;align-items:flex-start;font-size:.92rem;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><polyline points="20 6 9 17 4 12"/></svg>{t.cloud.plumeCloud.features[0]}</li>
-            <li style="display:flex;gap:10px;align-items:flex-start;font-size:.92rem;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><polyline points="20 6 9 17 4 12"/></svg>{t.cloud.plumeCloud.features[1]}</li>
-            <li style="display:flex;gap:10px;align-items:flex-start;font-size:.92rem;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><polyline points="20 6 9 17 4 12"/></svg>{t.cloud.plumeCloud.features[2]}</li>
-            <li style="display:flex;gap:10px;align-items:flex-start;font-size:.92rem;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="var(--amber)" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" style="flex-shrink:0;margin-top:1px;"><polyline points="20 6 9 17 4 12"/></svg>{t.cloud.plumeCloud.features[3]}</li>
-          </ul>
         </div>
       </div>
-      <p style="text-align:center;color:var(--faint);font-size:.85rem;margin:28px auto 0;max-width:50ch;">{t.cloud.footnote}</p>
-    </section>
-
-    <!-- ===================== QUICKSTART ===================== -->
-    <section id="quickstart" style="max-width:1180px;margin:0 auto;padding:clamp(56px,9vw,104px) 24px;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:clamp(28px,5vw,56px);align-items:center;">
-      <div>
-        <span style="font-size:.82rem;font-weight:600;color:var(--amber);text-transform:uppercase;letter-spacing:.07em;">{t.quickstart.eyebrow}</span>
-        <h2 style="font-size:clamp(1.7rem,3.6vw,2.5rem);font-weight:800;letter-spacing:-.02em;margin:12px 0 0;line-height:1.1;text-wrap:balance;">{t.quickstart.heading}</h2>
-        <p style="color:var(--muted);font-size:1.05rem;margin:14px 0 0;text-wrap:pretty;">{t.quickstart.bodyBefore} <span style="font-family:'JetBrains Mono Variable',monospace;color:var(--fg);">{t.quickstart.bodySettings}</span>{t.quickstart.bodyAfter}</p>
-        <div style="display:flex;gap:12px;flex-wrap:wrap;margin-top:24px;">
-          <a href={`${docsBase}/`} style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:#fff;font-weight:600;padding:12px 18px;border-radius:10px;background:var(--primary);box-shadow:var(--shadow-sm);" style-hover="filter:brightness(1.06);" style-focus="outline:2px solid var(--primary);outline-offset:2px;">{t.quickstart.ctaDocs}</a>
-          <a href="https://github.com/plume-newsletter/plume" style="display:inline-flex;align-items:center;gap:8px;text-decoration:none;color:var(--fg);font-weight:600;padding:12px 18px;border-radius:10px;border:1px solid var(--border-strong);background:var(--surface);" style-hover="background:var(--surface-2);" style-focus="outline:2px solid var(--primary);outline-offset:2px;">{t.quickstart.ctaGithub}</a>
-        </div>
-      </div>
-      <div style="background:var(--code-bg);border:1px solid var(--border-strong);border-radius:14px;box-shadow:var(--shadow-lg);overflow:hidden;">
-        <div style="display:flex;align-items:center;justify-content:space-between;padding:11px 14px;border-bottom:1px solid rgba(255,255,255,.08);">
-          <div style="display:flex;align-items:center;gap:7px;">
-            <span style="width:11px;height:11px;border-radius:999px;background:#ef5f56;"></span>
-            <span style="width:11px;height:11px;border-radius:999px;background:#f6bd3b;"></span>
-            <span style="width:11px;height:11px;border-radius:999px;background:#5fc454;"></span>
-            <span style="margin-left:6px;font-family:'JetBrains Mono Variable',monospace;font-size:.76rem;color:rgba(255,255,255,.5);">{t.quickstart.terminalLabel}</span>
-          </div>
-          <button id="copy-cmd" aria-label={t.quickstart.copyAria} style="display:inline-flex;align-items:center;gap:6px;background:rgba(255,255,255,.08);color:var(--code-fg);border:none;border-radius:7px;padding:6px 10px;font-size:.76rem;font-family:'JetBrains Mono Variable',monospace;cursor:pointer;" style-hover="background:rgba(255,255,255,.16);" style-focus="outline:2px solid var(--amber);outline-offset:2px;">
-            <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="9" y="9" width="13" height="13" rx="2"/><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"/></svg>
-            <span id="copy-label">{t.quickstart.copyLabel}</span>
-          </button>
-        </div>
-        <pre style="margin:0;padding:20px;overflow-x:auto;font-family:'JetBrains Mono Variable',monospace;font-size:.84rem;line-height:1.9;color:var(--code-fg);"><span style="color:#7d8590;">{t.quickstart.terminalComment1}</span>
-<span style="color:#7ee787;">git</span> clone https://github.com/plume-newsletter/plume.git
-<span style="color:#7ee787;">cd</span> plume <span style="color:#ff7b72;">&amp;&amp;</span> cp .env.example .env
-
-<span style="color:#7d8590;">{t.quickstart.terminalComment2}</span>
-<span style="color:#7ee787;">docker</span> compose up -d
-
-<span style="color:#7d8590;">{t.quickstart.terminalComment3}</span> <span style="color:#79c0ff;">http://localhost:8080</span></pre>
-      </div>
+      <p style="text-align:center;color:var(--faint);font-size:.85rem;margin:28px auto 0;max-width:50ch;">{t.plans.footnote}</p>
     </section>
 
     <!-- ===================== SOCIAL PROOF ===================== -->
@@ -554,7 +500,7 @@ const canonical = site;
             </figcaption>
           </figure>
           <figure style="margin:0;background:var(--bg);border:1px solid var(--border);border-radius:14px;padding:24px;">
-            <blockquote style="margin:0;font-size:1.02rem;line-height:1.55;">"The hook system let us wire subscribe events into our CRM without touching a fork. Exactly what I want from open source."</blockquote>
+            <blockquote style="margin:0;font-size:1.02rem;line-height:1.55;">"Installing on hosting we already had took an afternoon, and we never think about a monthly newsletter bill again."</blockquote>
             <figcaption style="display:flex;align-items:center;gap:11px;margin-top:18px;">
               <span style="width:36px;height:36px;border-radius:999px;background:var(--amber-weak);border:1px solid var(--border);display:inline-flex;align-items:center;justify-content:center;font-family:'JetBrains Mono Variable',monospace;font-size:.8rem;color:var(--amber);font-weight:600;">[ ]</span>
               <span style="font-size:.85rem;color:var(--muted);font-style:italic;">testimonial placeholder — name, role, company</span>
@@ -566,37 +512,25 @@ const canonical = site;
     </div>
     -->
 
-    <!-- ===================== CLOUD WAITLIST ===================== -->
-    <section id="cloud-waitlist" style="max-width:1180px;margin:0 auto;padding:clamp(40px,6vw,64px) 24px;">
+    <!-- ===================== LIVE DEMO ===================== -->
+    <section id="demo" style="max-width:1180px;margin:0 auto;padding:clamp(40px,6vw,64px) 24px;">
       <div style="background:var(--surface);border:1px solid var(--border);border-radius:20px;box-shadow:var(--shadow);overflow:hidden;display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));">
         <div style="padding:clamp(28px,4vw,48px);">
           <span style="display:inline-flex;align-items:center;gap:7px;font-size:.78rem;font-weight:600;color:var(--amber);background:var(--amber-weak);border:1px solid var(--border);border-radius:999px;padding:5px 11px;">
-            <span style="width:6px;height:6px;border-radius:999px;background:var(--amber);display:inline-block;"></span>{t.waitlist.badge}
+            <span style="width:6px;height:6px;border-radius:999px;background:var(--amber);display:inline-block;"></span>{t.demo.badge}
           </span>
-          <h2 style="font-size:clamp(1.6rem,3.2vw,2.2rem);font-weight:800;letter-spacing:-.02em;margin:16px 0 0;line-height:1.12;text-wrap:balance;">{t.waitlist.heading}</h2>
-          <p style="color:var(--muted);font-size:1.04rem;margin:12px 0 0;text-wrap:pretty;">{t.waitlist.body}</p>
-          <div id="wait-open">
-            <form id="wait-form" style="display:flex;gap:10px;flex-wrap:wrap;margin-top:26px;">
-              <input type="email" id="wait-email" placeholder={t.waitlist.emailPlaceholder} aria-label={t.waitlist.emailAria} required style="flex:1;min-width:220px;padding:13px 15px;border-radius:10px;border:1px solid var(--border-strong);background:var(--bg);color:var(--fg);font-size:1rem;" style-focus="outline:none;border-color:var(--primary);box-shadow:0 0 0 3px var(--primary-weak);" />
-              <button type="submit" style="display:inline-flex;align-items:center;gap:8px;padding:13px 22px;border-radius:10px;border:none;background:var(--amber);color:#fff;font-weight:600;font-size:1rem;cursor:pointer;box-shadow:var(--shadow-sm);white-space:nowrap;" style-hover="filter:brightness(.94);" style-focus="outline:2px solid var(--amber);outline-offset:2px;">{t.waitlist.submitCta}</button>
-            </form>
-            <div id="wait-error-wrap" style="display:none;">
-              <p style="color:var(--amber);font-size:.85rem;margin:10px 0 0;"><span id="wait-error-msg"></span></p>
-            </div>
-            <p style="color:var(--faint);font-size:.8rem;margin:12px 0 0;">{t.waitlist.selfHostLinkPre} <a href="#quickstart" style="color:var(--primary-text);text-decoration:none;font-weight:600;" style-hover="text-decoration:underline;">{t.waitlist.selfHostLinkCta}</a></p>
-          </div>
-          <div id="wait-done" style="display:none;">
-            <div style="display:flex;align-items:center;gap:12px;margin-top:26px;padding:16px 18px;border-radius:12px;background:var(--success-weak);border:1px solid var(--border);">
-              <span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:999px;background:var(--success);flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><polyline points="20 6 9 17 4 12"/></svg></span>
-              <div><div style="font-weight:600;">{t.waitlist.successTitle}</div><div style="color:var(--muted);font-size:.88rem;">{t.waitlist.successBody}</div></div>
-            </div>
-          </div>
+          <h2 style="font-size:clamp(1.6rem,3.2vw,2.2rem);font-weight:800;letter-spacing:-.02em;margin:16px 0 0;line-height:1.12;text-wrap:balance;">{t.demo.heading}</h2>
+          <p style="color:var(--muted);font-size:1.04rem;margin:12px 0 0;text-wrap:pretty;">{t.demo.body}</p>
+          <a href={DEMO_URL} style="display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:#fff;font-weight:600;padding:13px 22px;border-radius:10px;background:var(--amber);box-shadow:var(--shadow-sm);margin-top:26px;" style-hover="filter:brightness(.94);" style-focus="outline:2px solid var(--amber);outline-offset:2px;">
+            {t.demo.cta}
+            <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+          </a>
         </div>
         <div style="background:linear-gradient(150deg,var(--primary-weak),var(--amber-weak));padding:clamp(28px,4vw,48px);display:flex;flex-direction:column;justify-content:center;gap:16px;border-left:1px solid var(--border);">
-          <div style="display:flex;align-items:center;gap:11px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:9px;background:var(--surface);color:var(--primary);box-shadow:var(--shadow-sm);flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M17.5 19a4.5 4.5 0 0 0 .5-8.97A6 6 0 0 0 6.3 9.5 4 4 0 0 0 7 17.5"/></svg></span><span style="font-weight:600;">{t.waitlist.sideFeature1}</span></div>
-          <div style="display:flex;align-items:center;gap:11px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:9px;background:var(--surface);color:var(--primary);box-shadow:var(--shadow-sm);flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12a9 9 0 1 1-3-6.7L21 8"/><path d="M21 3v5h-5"/></svg></span><span style="font-weight:600;">{t.waitlist.sideFeature2}</span></div>
-          <div style="display:flex;align-items:center;gap:11px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:9px;background:var(--surface);color:var(--primary);box-shadow:var(--shadow-sm);flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><span style="font-weight:600;">{t.waitlist.sideFeature3}</span></div>
-          <div style="display:flex;align-items:center;gap:11px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:9px;background:var(--surface);color:var(--primary);box-shadow:var(--shadow-sm);flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2Z"/></svg></span><span style="font-weight:600;">{t.waitlist.sideFeature4}</span></div>
+          <div style="display:flex;align-items:center;gap:11px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:9px;background:var(--surface);color:var(--primary);box-shadow:var(--shadow-sm);flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span><span style="font-weight:600;">{t.demo.sideFeature1}</span></div>
+          <div style="display:flex;align-items:center;gap:11px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:9px;background:var(--surface);color:var(--primary);box-shadow:var(--shadow-sm);flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="3" width="16" height="18" rx="2"/><path d="M8 8h8M8 12h8M8 16h5"/></svg></span><span style="font-weight:600;">{t.demo.sideFeature2}</span></div>
+          <div style="display:flex;align-items:center;gap:11px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:9px;background:var(--surface);color:var(--primary);box-shadow:var(--shadow-sm);flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><polyline points="1 4 1 10 7 10"/><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"/></svg></span><span style="font-weight:600;">{t.demo.sideFeature3}</span></div>
+          <div style="display:flex;align-items:center;gap:11px;"><span style="display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px;border-radius:9px;background:var(--surface);color:var(--primary);box-shadow:var(--shadow-sm);flex-shrink:0;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M18 6 6 18"/><path d="m6 6 12 12"/></svg></span><span style="font-weight:600;">{t.demo.sideFeature4}</span></div>
         </div>
       </div>
     </section>
@@ -607,11 +541,10 @@ const canonical = site;
         <h2 style="color:#fff;font-size:clamp(1.7rem,3.6vw,2.6rem);font-weight:800;letter-spacing:-.02em;margin:0;line-height:1.1;text-wrap:balance;">{t.finalCta.heading}</h2>
         <p style="color:rgba(255,255,255,.85);font-size:1.08rem;margin:14px auto 0;max-width:46ch;text-wrap:pretty;">{t.finalCta.body}</p>
         <div style="display:flex;gap:12px;flex-wrap:wrap;justify-content:center;margin-top:28px;">
-          <a href="#quickstart" style="display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:#fff;font-weight:600;padding:13px 24px;border-radius:10px;background:var(--amber);box-shadow:var(--shadow);" style-hover="filter:brightness(.94);transform:translateY(-1px);" style-focus="outline:2px solid #fff;outline-offset:2px;">{t.finalCta.ctaPrimary}</a>
-          <a href="https://github.com/plume-newsletter/plume" style="display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:var(--primary);font-weight:600;padding:13px 22px;border-radius:10px;background:#fff;" style-hover="filter:brightness(.96);" style-focus="outline:2px solid #fff;outline-offset:2px;">
-            <svg width="18" height="18" viewBox="0 0 19 19" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M9.356 1.85C5.05 1.85 1.57 5.356 1.57 9.694a7.84 7.84 0 0 0 5.324 7.44c.387.079.528-.168.528-.376 0-.182-.013-.805-.013-1.454-2.165.467-2.616-.935-2.616-.935-.349-.91-.864-1.143-.864-1.143-.71-.48.051-.48.051-.48.787.051 1.2.805 1.2.805.695 1.194 1.817.857 2.268.649.064-.507.27-.857.49-1.052-1.728-.182-3.545-.857-3.545-3.87 0-.857.31-1.558.8-2.104-.078-.195-.349-1 .077-2.078 0 0 .657-.208 2.14.805a7.5 7.5 0 0 1 1.946-.26c.657 0 1.328.092 1.946.26 1.483-1.013 2.14-.805 2.14-.805.426 1.078.155 1.883.078 2.078.502.546.799 1.247.799 2.104 0 3.013-1.818 3.675-3.558 3.87.284.247.528.714.528 1.454 0 1.052-.012 1.896-.012 2.156 0 .208.142.455.528.377a7.84 7.84 0 0 0 5.324-7.441c.013-4.338-3.48-7.844-7.773-7.844" clip-rule="evenodd"/></svg>
-            {t.finalCta.ctaSecondary}
-          </a>
+          {CODECANYON_URL
+            ? <a href={CODECANYON_URL} style="display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:#fff;font-weight:600;padding:13px 24px;border-radius:10px;background:var(--amber);box-shadow:var(--shadow);" style-hover="filter:brightness(.94);transform:translateY(-1px);" style-focus="outline:2px solid #fff;outline-offset:2px;">{t.nav.ctaBuy}</a>
+            : <span style="display:inline-flex;align-items:center;gap:9px;color:rgba(255,255,255,.75);font-weight:600;padding:13px 24px;border-radius:10px;background:rgba(255,255,255,.12);border:1px solid rgba(255,255,255,.25);cursor:not-allowed;">{t.nav.ctaComingSoon}</span>}
+          <a href={DEMO_URL} style="display:inline-flex;align-items:center;gap:9px;text-decoration:none;color:var(--primary);font-weight:600;padding:13px 22px;border-radius:10px;background:#fff;" style-hover="filter:brightness(.96);" style-focus="outline:2px solid #fff;outline-offset:2px;">{t.hero.ctaDemo}</a>
         </div>
       </div>
     </section>
@@ -621,8 +554,8 @@ const canonical = site;
   <!-- ===================== FOOTER ===================== -->
   <footer style="border-top:1px solid var(--border);background:var(--surface);">
     <div style="max-width:1180px;margin:0 auto;padding:clamp(40px,6vw,64px) 24px 28px;">
-      <div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(170px,1fr));gap:32px;">
-        <div style="grid-column:1 / -1;max-width:300px;">
+      <div style="display:flex;justify-content:space-between;gap:48px;flex-wrap:wrap;">
+        <div style="max-width:300px;">
           <div style="display:flex;align-items:center;gap:10px;">
             <span style="display:inline-flex;align-items:center;justify-content:center;width:30px;height:30px;border-radius:8px;background:var(--primary);">
               <svg width="17" height="17" viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20.24 12.24a6 6 0 0 0-8.49-8.49L5 10.5V19h8.5z"/><line x1="16" y1="8" x2="2" y2="22"/><path d="M17.5 15H9"/></svg>
@@ -631,45 +564,34 @@ const canonical = site;
           </div>
           <p style="color:var(--muted);font-size:.9rem;margin:14px 0 0;">{t.footer.tagline}</p>
         </div>
-        <div>
-          <h4 style="font-size:.78rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin:0 0 12px;">{t.footer.productHeading}</h4>
-          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px;">
-            <li><a href="#features" style="text-decoration:none;color:var(--fg);font-size:.92rem;" style-hover="color:var(--primary);">{t.footer.productLinks.features}</a></li>
-            <li><a href="#pricing" style="text-decoration:none;color:var(--fg);font-size:.92rem;" style-hover="color:var(--primary);">{t.footer.productLinks.pricing}</a></li>
-            <li><a href="#plans" style="text-decoration:none;color:var(--fg);font-size:.92rem;" style-hover="color:var(--primary);">{t.footer.productLinks.cloud}</a></li>
-            <li><a href="#how" style="text-decoration:none;color:var(--fg);font-size:.92rem;" style-hover="color:var(--primary);">{t.footer.productLinks.how}</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 style="font-size:.78rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin:0 0 12px;">{t.footer.resourcesHeading}</h4>
-          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px;">
-            <li><a href={`${docsBase}/`} style="text-decoration:none;color:var(--fg);font-size:.92rem;" style-hover="color:var(--primary);">{t.footer.resourcesLinks.docs}</a></li>
-            <li><a href={`${docsBase}/hooks/`} style="text-decoration:none;color:var(--fg);font-size:.92rem;" style-hover="color:var(--primary);">{t.footer.resourcesLinks.hooks}</a></li>
-            <li><a href={`${docsBase}/installation/`} style="text-decoration:none;color:var(--fg);font-size:.92rem;" style-hover="color:var(--primary);">{t.footer.resourcesLinks.installation}</a></li>
-            <li><a href={`${docsBase}/changelog/`} style="text-decoration:none;color:var(--fg);font-size:.92rem;" style-hover="color:var(--primary);">{t.footer.resourcesLinks.changelog}</a></li>
-          </ul>
-        </div>
-        <div>
-          <h4 style="font-size:.78rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin:0 0 12px;">{t.footer.communityHeading}</h4>
-          <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px;">
-            <li><a href="https://github.com/plume-newsletter/plume" style="text-decoration:none;color:var(--fg);font-size:.92rem;" style-hover="color:var(--primary);">{t.footer.communityLinks.github}</a></li>
-            <li><a href="https://github.com/plume-newsletter/plume/discussions" style="text-decoration:none;color:var(--fg);font-size:.92rem;" style-hover="color:var(--primary);">{t.footer.communityLinks.discussions}</a></li>
-          </ul>
+        <div style="display:flex;gap:56px;flex-wrap:wrap;">
+          <div>
+            <h4 style="font-size:.78rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin:0 0 12px;">{t.footer.productHeading}</h4>
+            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px;">
+              <li><a href="#features" style="text-decoration:none;color:var(--fg);font-size:.92rem;" style-hover="color:var(--primary);">{t.footer.productLinks.features}</a></li>
+              <li><a href="#how" style="text-decoration:none;color:var(--fg);font-size:.92rem;" style-hover="color:var(--primary);">{t.footer.productLinks.how}</a></li>
+              <li><a href={DEMO_URL} style="text-decoration:none;color:var(--fg);font-size:.92rem;" style-hover="color:var(--primary);">{t.footer.productLinks.demo}</a></li>
+            </ul>
+          </div>
+          <div>
+            <h4 style="font-size:.78rem;text-transform:uppercase;letter-spacing:.07em;color:var(--muted);margin:0 0 12px;">{t.footer.resourcesHeading}</h4>
+            <ul style="list-style:none;padding:0;margin:0;display:flex;flex-direction:column;gap:9px;">
+              <li><a href={`${docsBase}/`} style="text-decoration:none;color:var(--fg);font-size:.92rem;" style-hover="color:var(--primary);">{t.footer.resourcesLinks.docs}</a></li>
+              <li><a href={`${docsBase}/installation/`} style="text-decoration:none;color:var(--fg);font-size:.92rem;" style-hover="color:var(--primary);">{t.footer.resourcesLinks.installation}</a></li>
+              <li><a href={`${docsBase}/faq/`} style="text-decoration:none;color:var(--fg);font-size:.92rem;" style-hover="color:var(--primary);">{t.footer.resourcesLinks.faq}</a></li>
+              <li><a href={`${docsBase}/changelog/`} style="text-decoration:none;color:var(--fg);font-size:.92rem;" style-hover="color:var(--primary);">{t.footer.resourcesLinks.changelog}</a></li>
+            </ul>
+          </div>
         </div>
       </div>
       <div style="display:flex;align-items:center;justify-content:space-between;gap:16px;flex-wrap:wrap;margin-top:40px;padding-top:24px;border-top:1px solid var(--border);">
-        <span style="font-size:.84rem;color:var(--muted);">{t.footer.copyrightPre} <span style="font-family:'JetBrains Mono Variable',monospace;color:var(--fg);">{t.footer.copyrightLicense}</span></span>
-        <div style="display:flex;align-items:center;gap:8px;">
-          <a href="https://github.com/plume-newsletter/plume" aria-label={t.footer.githubAria} style="display:inline-flex;align-items:center;justify-content:center;width:36px;height:36px;border-radius:9px;border:1px solid var(--border);color:var(--fg);background:var(--bg);" style-hover="background:var(--surface-2);border-color:var(--border-strong);">
-            <svg width="17" height="17" viewBox="0 0 19 19" fill="currentColor" aria-hidden="true"><path fill-rule="evenodd" d="M9.356 1.85C5.05 1.85 1.57 5.356 1.57 9.694a7.84 7.84 0 0 0 5.324 7.44c.387.079.528-.168.528-.376 0-.182-.013-.805-.013-1.454-2.165.467-2.616-.935-2.616-.935-.349-.91-.864-1.143-.864-1.143-.71-.48.051-.48.051-.48.787.051 1.2.805 1.2.805.695 1.194 1.817.857 2.268.649.064-.507.27-.857.49-1.052-1.728-.182-3.545-.857-3.545-3.87 0-.857.31-1.558.8-2.104-.078-.195-.349-1 .077-2.078 0 0 .657-.208 2.14.805a7.5 7.5 0 0 1 1.946-.26c.657 0 1.328.092 1.946.26 1.483-1.013 2.14-.805 2.14-.805.426 1.078.155 1.883.078 2.078.502.546.799 1.247.799 2.104 0 3.013-1.818 3.675-3.558 3.87.284.247.528.714.528 1.454 0 1.052-.012 1.896-.012 2.156 0 .208.142.455.528.377a7.84 7.84 0 0 0 5.324-7.441c.013-4.338-3.48-7.844-7.773-7.844" clip-rule="evenodd"/></svg>
-          </a>
-        </div>
+        <span style="font-size:.84rem;color:var(--muted);">{t.footer.copyright}</span>
       </div>
     </div>
   </footer>
 
 </div>
-<script define:vars={{ copyLabel: t.quickstart.copyLabel, copiedLabel: t.quickstart.copiedLabel }}>
+<script>
   const html = document.documentElement;
 
   // theme toggle
@@ -709,66 +631,6 @@ const canonical = site;
     set('v-plume', money(ses)); set('v-save', Math.max(0, Math.round((1 - ses / saas) * 100)) + '%');
   };
   if (slider) { slider.addEventListener('input', calc); calc(); }
-
-  // copy quickstart command
-  document.getElementById('copy-cmd')?.addEventListener('click', () => {
-    navigator.clipboard?.writeText('docker compose up -d');
-    const l = document.getElementById('copy-label');
-    if (l) { l.textContent = copiedLabel; setTimeout(() => (l.textContent = copyLabel), 1800); }
-  });
-
-
-  // live GitHub star count (per-visitor IP quota; static fallback already rendered)
-  fetch('https://api.github.com/repos/plume-newsletter/plume')
-    .then((r) => r.json())
-    .then((d) => {
-      const n = d && d.stargazers_count;
-      if (typeof n !== 'number') return;
-      set('gh-stars', n >= 1000 ? (n / 1000).toFixed(1).replace(/\.0$/, '') + 'k' : String(n));
-    })
-    .catch(() => {});
-</script>
-<script define:vars={{ wl: t.waitlist.js }}>
-  (() => {
-    const form = document.getElementById('wait-form');
-    if (!form) return;
-    const email = document.getElementById('wait-email');
-    const openEl = document.getElementById('wait-open');
-    const doneEl = document.getElementById('wait-done');
-    const errWrap = document.getElementById('wait-error-wrap');
-    const errMsg = document.getElementById('wait-error-msg');
-    const btn = form.querySelector('button[type="submit"]');
-
-    form.addEventListener('submit', async (e) => {
-      e.preventDefault();
-      const value = (email.value || '').trim();
-      if (!value) return;
-      errWrap.style.display = 'none';
-      const label = btn.textContent;
-      btn.disabled = true;
-      btn.textContent = wl.sending;
-      try {
-        const res = await fetch('https://app.plumenewsletter.com/api/waitlist', {
-          method: 'POST',
-          headers: { 'Content-Type': 'application/json' },
-          body: JSON.stringify({ email: value }),
-        });
-        if (res.ok) {
-          openEl.style.display = 'none';
-          doneEl.style.display = 'block';
-          return;
-        }
-        errMsg.textContent = res.status === 429
-          ? wl.tooMany
-          : wl.genericError;
-      } catch (_) {
-        errMsg.textContent = wl.networkError;
-      }
-      errWrap.style.display = 'block';
-      btn.disabled = false;
-      btn.textContent = label;
-    });
-  })();
 </script>
 </body>
 </html>
