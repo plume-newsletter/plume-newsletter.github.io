@@ -16,7 +16,7 @@ export default defineConfig({
       customCss: ['./src/styles/docs.css'],
       sidebar: [
         { label: 'Getting started', items: [{ slug: 'docs', label: 'Introduction' }, 'docs/installation', 'docs/cron', 'docs/email-sending'] },
-        { label: 'Using Plume', items: ['docs/campaigns', 'docs/audience', 'docs/automations', 'docs/tracking-reports'] },
+        { label: 'Using Plume', items: ['docs/campaigns', 'docs/images-in-email', 'docs/audience', 'docs/automations', 'docs/tracking-reports'] },
         { label: 'More', items: ['docs/faq', 'docs/changelog'] },
       ],
     }),
