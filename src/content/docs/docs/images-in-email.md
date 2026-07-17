@@ -54,15 +54,25 @@ file just renders sharper, not bigger.
 
 ## One-time setup: `storage:link`
 
-Uploaded images are served from your `public/storage` directory, which is a symlink to
-`storage/app/public`. The [installer](/docs/installation/) creates this link for you. If uploads
-show as broken images after a manual move or a fresh clone, recreate it:
+Uploaded images are served from your `public/storage` directory, which is a shortcut (a symlink)
+pointing at `storage/app/public`. The [installer](/docs/installation/) creates it for you, and on
+almost every host that's the end of it.
 
-```bash
-php artisan storage:link
-```
+A few shared hosts block symlinks, and the installer deliberately doesn't fail the install over it
+— so the first sign is uploaded images showing as broken. To create the link yourself, on cPanel,
+without a command line:
 
-**Shared hosting that blocks symlinks:** some hosts disallow `symlink()`. In that case, point a
-real `public/uploads` (or `public/storage`) directory at your storage, or configure the host's
-file manager to create the symlink. Once `public/storage/...` serves your uploaded files over
-HTTPS, image blocks work.
+1. Open **Cron Jobs** in cPanel.
+2. Add a new job set to **Once Per Minute**, with this command (substitute your real path):
+
+   ```
+   cd /home/yourusername/plume && php artisan storage:link
+   ```
+
+3. Wait a minute, check that your images now load, then **delete the cron job** — it only needs to
+   run once.
+
+If your host offers **Terminal** in cPanel, run the same command there instead and skip the cron
+dance. If images still don't load, the host is blocking symlinks outright — their support can
+create the `public/storage` → `storage/app/public` link for you. Once `public/storage/...` serves
+your uploads over HTTPS, image blocks work.
